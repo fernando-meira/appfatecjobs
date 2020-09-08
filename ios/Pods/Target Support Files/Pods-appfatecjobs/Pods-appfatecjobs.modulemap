@@ -1,0 +1,6 @@
+module Pods_appfatecjobs {
+  umbrella header "Pods-appfatecjobs-umbrella.h"
+
+  export *
+  module * { export * }
+}

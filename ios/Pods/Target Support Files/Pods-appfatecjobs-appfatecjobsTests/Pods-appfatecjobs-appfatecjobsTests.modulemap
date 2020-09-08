@@ -1,0 +1,6 @@
+module Pods_appfatecjobs_appfatecjobsTests {
+  umbrella header "Pods-appfatecjobs-appfatecjobsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

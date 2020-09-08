@@ -2,6 +2,6 @@ import React from 'react';
 
 import { Container } from './styles';
 
-export default function SignOut() {
-  return <Container />;
-}
+const SignOut: React.FC = () => <Container />;
+
+export default SignOut;
