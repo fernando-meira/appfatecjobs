@@ -3,6 +3,8 @@ import styled from 'styled-components/native';
 import colors from '../../themes/colors';
 
 export const Container = styled.View`
+  padding: 0 40px;
+
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -13,5 +15,5 @@ export const Title = styled.Text`
 
   font-size: 24px;
   font-family: 'Poppins-Regular';
-  color: ${colors.primaryTextColor};
+  color: ${colors.textColor};
 `;

@@ -1,9 +1,10 @@
 export default {
-  primaryColor: '#1D2433',
-  inputColor: '#BBDEFB',
-  buttonColor: '#E43F5A',
+  background: '#1D2433',
 
-  inputTextColor: '#1D2433',
-  buttonTextColor: '#EBEAEA',
-  primaryTextColor: '#F4EDE8',
+  primaryColor: '#34E3B8',
+  secondaryColor: '#E43F5A',
+
+  textColor: '#F4EDE8',
+  inputColor: '#171527',
+  inputTextColor: '#EBEAEA',
 };
