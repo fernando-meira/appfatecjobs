@@ -13,8 +13,8 @@ const SignIn: React.FC = () => {
 
       <Title>Faça seu login</Title>
 
-      <Input />
-      <Input />
+      <Input name="RA" icon="user" placeholder="R.A." />
+      <Input name="password" icon="lock" placeholder="Senha" />
 
       <Button onPress={() => console.log('Feito')}>Entrar</Button>
     </Container>
