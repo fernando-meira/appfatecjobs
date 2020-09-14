@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Image,
   Platform,
-  KeyboardAvoidingView,
+  Keyboard,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import ideaImage from '../../themes/assets/images/idea.png';
@@ -20,6 +21,21 @@ import {
 } from './styles';
 
 const SignIn: React.FC = () => {
+  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+  }, []);
+
+  const _keyboardDidShow = () => {
+    setKeyboardIsOpen(true);
+  };
+
+  const _keyboardDidHide = () => {
+    setKeyboardIsOpen(false);
+  };
+
   return (
     <>
       <KeyboardAvoidingView
@@ -52,13 +68,15 @@ const SignIn: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <CreateAccontButton
-        onPress={() => {
-          console.log('Redirecionado para criação da conta');
-        }}
-      >
-        <CreateAccontButtonText>Criar conta</CreateAccontButtonText>
-      </CreateAccontButton>
+      {!keyboardIsOpen && (
+        <CreateAccontButton
+          onPress={() => {
+            console.log('Redirecionado para criação da conta');
+          }}
+        >
+          <CreateAccontButtonText>Criar conta</CreateAccontButtonText>
+        </CreateAccontButton>
+      )}
     </>
   );
 };
