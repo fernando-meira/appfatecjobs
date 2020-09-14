@@ -43,14 +43,20 @@ const SignIn: React.FC = () => {
 
             <Button onPress={() => console.log('Feito')}>Entrar</Button>
 
-            <ForgotPassword>
-              <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+            <ForgotPassword
+              onPress={() => console.log('Página de redefinição de senha')}
+            >
+              <ForgotPasswordText>Redefinir Senha</ForgotPasswordText>
             </ForgotPassword>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <CreateAccontButton>
+      <CreateAccontButton
+        onPress={() => {
+          console.log('Redirecionado para criação da conta');
+        }}
+      >
         <CreateAccontButtonText>Criar conta</CreateAccontButtonText>
       </CreateAccontButton>
     </>
