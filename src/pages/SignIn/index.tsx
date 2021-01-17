@@ -23,18 +23,18 @@ import {
 const SignIn: React.FC = () => {
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
 
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
-    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
-  }, []);
-
-  const _keyboardDidShow = () => {
+  const keyboardDidShow = () => {
     setKeyboardIsOpen(true);
   };
 
-  const _keyboardDidHide = () => {
+  const keyboardDidHide = () => {
     setKeyboardIsOpen(false);
   };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+  }, []);
 
   return (
     <>

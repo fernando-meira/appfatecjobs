@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { SignIn, SignOut } from '../pages';
+import { SignIn, SignOut, SelectionProfileType } from '../pages';
 
 const Auth = createStackNavigator();
 
@@ -13,6 +13,10 @@ const AuthRoutes: React.FC = () => {
         cardStyle: { backgroundColor: '#1D2433' },
       }}
     >
+      <Auth.Screen
+        name="SelectionProfileType"
+        component={SelectionProfileType}
+      />
       <Auth.Screen name="SignIn" component={SignIn} />
       <Auth.Screen name="SignOut" component={SignOut} />
     </Auth.Navigator>

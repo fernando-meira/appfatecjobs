@@ -1,4 +1,5 @@
 import SignIn from './SignIn';
 import SignOut from './SignOut';
+import SelectionProfileType from './SelectionProfileType';
 
-export { SignIn, SignOut };
+export { SignIn, SignOut, SelectionProfileType };
