@@ -62,11 +62,11 @@
 		5BA14E2F8DBEB1EEDD7641FA /* Pods-appfatecjobs-appfatecjobsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appfatecjobs-appfatecjobsTests.release.xcconfig"; path = "Target Support Files/Pods-appfatecjobs-appfatecjobsTests/Pods-appfatecjobs-appfatecjobsTests.release.xcconfig"; sourceTree = "<group>"; };
 		7A0ACBB5F6546692E9CD6956 /* Pods-appfatecjobs-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appfatecjobs-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-appfatecjobs-tvOSTests/Pods-appfatecjobs-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = appfatecjobs/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		88661C95518A4DB58FA782F2 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		88661C95518A4DB58FA782F2 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		A23E0C2F3E490BA2838FE1CF /* libPods-appfatecjobs-appfatecjobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appfatecjobs-appfatecjobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE29CDB54E1B133E8451C1C9 /* Pods-appfatecjobs-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appfatecjobs-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-appfatecjobs-tvOS/Pods-appfatecjobs-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B35AF1DA31776ED2C2375F0B /* Pods-appfatecjobs-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appfatecjobs-tvOS.release.xcconfig"; path = "Target Support Files/Pods-appfatecjobs-tvOS/Pods-appfatecjobs-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		E222DEEA373242B1BAEA0D74 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		E222DEEA373242B1BAEA0D74 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		E5BB8F6F00E546410C1CF7C9 /* libPods-appfatecjobs-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appfatecjobs-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD2F491AEC735D13CF91BD7 /* Pods-appfatecjobs-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appfatecjobs-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-appfatecjobs-tvOSTests/Pods-appfatecjobs-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -165,7 +165,6 @@
 				EBD2F491AEC735D13CF91BD7 /* Pods-appfatecjobs-tvOSTests.debug.xcconfig */,
 				7A0ACBB5F6546692E9CD6956 /* Pods-appfatecjobs-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -176,7 +175,6 @@
 				E222DEEA373242B1BAEA0D74 /* Poppins-SemiBold.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -306,17 +304,21 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = "/Users/icloudsdevelopers/Projects/Mobile/AppleKeys/ABQM Oficial";
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = "/Users/icloudsdevelopers/Projects/Mobile/AppleKeys/ABQM Oficial";
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = "/Users/icloudsdevelopers/Projects/Mobile/AppleKeys/ABQM Oficial";
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = "/Users/icloudsdevelopers/Projects/Mobile/AppleKeys/ABQM Oficial";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
