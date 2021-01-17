@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 import {
   View,
   Image,
@@ -11,13 +10,13 @@ import {
 } from 'react-native';
 
 import colors from '~/themes/colors';
-import ideaImage from '~/themes/assets/images/idea.png';
+import company from '~/themes/assets/images/company.png';
 
 import { Input, Button, SelectionButton } from '~/components';
 
 import * as S from './styles';
 
-const SignIn: React.FC = () => {
+const CompanySignIn: React.FC = () => {
   const navigation = useNavigation();
 
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
@@ -58,13 +57,13 @@ const SignIn: React.FC = () => {
             </S.ReturnButtonWrapper>
 
             <S.ContentWrapper>
-              <Image source={ideaImage} />
+              <Image source={company} />
 
               <View>
-                <S.Title>Faça seu login</S.Title>
+                <S.Title>Login Empresa</S.Title>
               </View>
 
-              <Input name="RA" icon="user" placeholder="R.A." />
+              <Input name="E-mail" icon="mail" placeholder="E-mail" />
               <Input name="password" icon="lock" placeholder="Senha" />
 
               <Button onPress={() => console.log('Feito')}>Entrar</Button>
@@ -92,4 +91,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default CompanySignIn;

@@ -1,5 +1,13 @@
-import SignIn from './SignIn';
-import SignOut from './SignOut';
+import StudentSignIn from './SignIn/StudentSignIn';
+import CompanySignIn from './SignIn/CompanySignIn';
+import StudentSignUp from './SignUp/StudentSignUp';
+import CompanySignUp from './SignUp/CompanySignUp';
 import SelectionProfileType from './SelectionProfileType';
 
-export { SignIn, SignOut, SelectionProfileType };
+export {
+  StudentSignIn,
+  StudentSignUp,
+  CompanySignIn,
+  CompanySignUp,
+  SelectionProfileType,
+};

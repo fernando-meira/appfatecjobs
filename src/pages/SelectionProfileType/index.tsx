@@ -38,7 +38,7 @@ const SelectionProfileType: React.FC = () => {
                 textColor={colors.secondaryColor}
                 iconColor={colors.textColor}
                 backgroundColor={colors.secondaryColor}
-                onPress={() => navigateToAnotherScreen('SignIn')}
+                onPress={() => navigateToAnotherScreen('StudentSignIn')}
               >
                 Sou aluno
               </SelectionButton>
@@ -49,7 +49,7 @@ const SelectionProfileType: React.FC = () => {
                 textColor={colors.textColor}
                 iconColor={colors.secondaryColor}
                 backgroundColor={colors.textColor}
-                onPress={() => navigateToAnotherScreen('SignIn')}
+                onPress={() => navigateToAnotherScreen('CompanySignIn')}
               >
                 Sou empresa
               </SelectionButton>

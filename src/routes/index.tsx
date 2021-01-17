@@ -1,7 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { SignIn, SignOut, SelectionProfileType } from '~/pages';
+import {
+  StudentSignIn,
+  StudentSignUp,
+  CompanySignIn,
+  CompanySignUp,
+  SelectionProfileType,
+} from '~/pages';
 
 const Auth = createStackNavigator();
 
@@ -17,8 +23,10 @@ const AuthRoutes: React.FC = () => {
         name="SelectionProfileType"
         component={SelectionProfileType}
       />
-      <Auth.Screen name="SignIn" component={SignIn} />
-      <Auth.Screen name="SignOut" component={SignOut} />
+      <Auth.Screen name="StudentSignIn" component={StudentSignIn} />
+      <Auth.Screen name="CompanySignIn" component={CompanySignIn} />
+      <Auth.Screen name="StudentSignUp" component={StudentSignUp} />
+      <Auth.Screen name="CompanySignUp" component={CompanySignUp} />
     </Auth.Navigator>
   );
 };
