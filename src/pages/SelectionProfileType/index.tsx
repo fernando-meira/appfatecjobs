@@ -1,14 +1,18 @@
 import React from 'react';
 import { ScrollView, Image, View } from 'react-native';
 
-import { SelectionButton } from '../../components';
-import selectionImage from '../../themes/assets/images/selection.png';
+import { SelectionButton } from '~/components';
+import selectionImage from '~/themes/assets/images/selection.png';
 
-import colors from '../../themes/colors';
+import colors from '~/themes/colors';
 
 import * as S from './styles';
 
-const SelectionProfileType: React.FC = ({ navigation }) => {
+interface Props {
+  navigation: any;
+}
+
+const SelectionProfileType: React.FC<Props> = ({ navigation }) => {
   return (
     <>
       <ScrollView

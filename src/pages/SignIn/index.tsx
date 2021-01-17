@@ -8,8 +8,9 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-import ideaImage from '../../themes/assets/images/idea.png';
-import { Input, Button } from '../../components';
+import ideaImage from '~/themes/assets/images/idea.png';
+
+import { Input, Button } from '~/components';
 
 import {
   Title,

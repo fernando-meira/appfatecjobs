@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
-import colors from '../../themes/colors';
+import colors from '~/themes/colors';
 
 export const Container = styled.View`
   padding: 0 40px;
