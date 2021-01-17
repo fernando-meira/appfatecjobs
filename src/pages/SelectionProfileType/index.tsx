@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, Image, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { SelectionButton } from '~/components';
 import selectionImage from '~/themes/assets/images/selection.png';
@@ -8,11 +9,13 @@ import colors from '~/themes/colors';
 
 import * as S from './styles';
 
-interface Props {
-  navigation: any;
-}
+const SelectionProfileType: React.FC = () => {
+  const navigation = useNavigation();
 
-const SelectionProfileType: React.FC<Props> = ({ navigation }) => {
+  const navigateToAnotherScreen = (page: string) => {
+    navigation.navigate(page);
+  };
+
   return (
     <>
       <ScrollView
@@ -35,7 +38,7 @@ const SelectionProfileType: React.FC<Props> = ({ navigation }) => {
                 textColor={colors.secondaryColor}
                 iconColor={colors.textColor}
                 backgroundColor={colors.secondaryColor}
-                onPress={() => navigation.navigate('SignIn')}
+                onPress={() => navigateToAnotherScreen('SignIn')}
               >
                 Sou aluno
               </SelectionButton>
@@ -46,7 +49,7 @@ const SelectionProfileType: React.FC<Props> = ({ navigation }) => {
                 textColor={colors.textColor}
                 iconColor={colors.secondaryColor}
                 backgroundColor={colors.textColor}
-                onPress={() => navigation.navigate('SignIn')}
+                onPress={() => navigateToAnotherScreen('SignIn')}
               >
                 Sou empresa
               </SelectionButton>

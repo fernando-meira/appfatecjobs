@@ -7,7 +7,7 @@ import {
 import colors from '../../themes/colors';
 
 export const Container = styled.View`
-  margin-top: ${getStatusBarHeight()}px;
+  margin-top: ${16 + getStatusBarHeight()}px;
 
   flex: 1;
   align-items: center;
@@ -16,7 +16,7 @@ export const Container = styled.View`
 
 export const Content = styled.View`
   width: 100%;
-  max-height: 60%;
+  max-height: 55%;
   border-top-right-radius: 60px;
   padding-bottom: ${32 + getBottomSpace()}px;
 

@@ -7,9 +7,9 @@ interface SelectionButtonProps extends TouchableOpacityProps {
   width?: number;
   iconName: string;
   iconColor: string;
-  textColor: string;
+  textColor?: string;
   backgroundColor: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const SelectionButtom: React.FC<SelectionButtonProps> = ({
@@ -27,7 +27,7 @@ const SelectionButtom: React.FC<SelectionButtonProps> = ({
         <S.Icon name={iconName} color={iconColor} size={24} />
       </S.Button>
 
-      <S.Text textColor={textColor}>{children}</S.Text>
+      {children && <S.Text textColor={textColor}>{children}</S.Text>}
     </S.Container>
   );
 };

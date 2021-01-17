@@ -36,7 +36,7 @@ export const Icon = styled(FeatherIcon)`
 `;
 
 export const Text = styled.Text<TextColorProps>`
-  color: ${({ textColor }) => textColor};
+  color: ${({ textColor }) => textColor || 'transparent'};
   font-size: 18px;
   font-family: 'Poppins-SemiBold';
 `;

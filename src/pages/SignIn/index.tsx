@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import {
   View,
   Image,
@@ -8,20 +10,16 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
+import colors from '~/themes/colors';
 import ideaImage from '~/themes/assets/images/idea.png';
 
-import { Input, Button } from '~/components';
+import { Input, Button, SelectionButton } from '~/components';
 
-import {
-  Title,
-  Container,
-  ForgotPassword,
-  ForgotPasswordText,
-  CreateAccontButton,
-  CreateAccontButtonText,
-} from './styles';
+import * as S from './styles';
 
 const SignIn: React.FC = () => {
+  const navigation = useNavigation();
+
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
 
   const keyboardDidShow = () => {
@@ -48,35 +46,47 @@ const SignIn: React.FC = () => {
           contentContainerStyle={{ flex: 1 }}
           keyboardShouldPersistTaps="handled"
         >
-          <Container>
-            <Image source={ideaImage} />
+          <S.Container>
+            <S.ReturnButtonWrapper>
+              <SelectionButton
+                width={60}
+                iconName="chevrons-left"
+                iconColor={colors.background}
+                backgroundColor={colors.primaryColor}
+                onPress={() => navigation.navigate('SelectionProfileType')}
+              />
+            </S.ReturnButtonWrapper>
 
-            <View>
-              <Title>Faça seu login</Title>
-            </View>
+            <S.ContentWrapper>
+              <Image source={ideaImage} />
 
-            <Input name="RA" icon="user" placeholder="R.A." />
-            <Input name="password" icon="lock" placeholder="Senha" />
+              <View>
+                <S.Title>Faça seu login</S.Title>
+              </View>
 
-            <Button onPress={() => console.log('Feito')}>Entrar</Button>
+              <Input name="RA" icon="user" placeholder="R.A." />
+              <Input name="password" icon="lock" placeholder="Senha" />
 
-            <ForgotPassword
-              onPress={() => console.log('Página de redefinição de senha')}
-            >
-              <ForgotPasswordText>Redefinir Senha</ForgotPasswordText>
-            </ForgotPassword>
-          </Container>
+              <Button onPress={() => console.log('Feito')}>Entrar</Button>
+
+              <S.ForgotPassword
+                onPress={() => console.log('Página de redefinição de senha')}
+              >
+                <S.ForgotPasswordText>Redefinir Senha</S.ForgotPasswordText>
+              </S.ForgotPassword>
+            </S.ContentWrapper>
+          </S.Container>
         </ScrollView>
       </KeyboardAvoidingView>
 
       {!keyboardIsOpen && (
-        <CreateAccontButton
+        <S.CreateAccontButton
           onPress={() => {
             console.log('Redirecionado para criação da conta');
           }}
         >
-          <CreateAccontButtonText>Criar conta</CreateAccontButtonText>
-        </CreateAccontButton>
+          <S.CreateAccontButtonText>Criar conta</S.CreateAccontButtonText>
+        </S.CreateAccontButton>
       )}
     </>
   );

@@ -1,10 +1,27 @@
 import styled from 'styled-components/native';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
+import {
+  getBottomSpace,
+  getStatusBarHeight,
+} from 'react-native-iphone-x-helper';
 
 import colors from '~/themes/colors';
 
 export const Container = styled.View`
+  margin-top: ${32 + getStatusBarHeight()}px;
+
+  flex: 1;
+`;
+
+export const ReturnButtonWrapper = styled.View`
+  top: 0;
+  left: 0;
+  z-index: 2;
+  position: absolute;
+`;
+
+export const ContentWrapper = styled.View`
   padding: 0 40px;
+  margin-bottom: 80px;
 
   flex: 1;
   align-items: center;
