@@ -1,10 +1,13 @@
 import styled from 'styled-components/native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import {
+  getStatusBarHeight,
+  getBottomSpace,
+} from 'react-native-iphone-x-helper';
 
 import colors from '../../themes/colors';
 
 export const Container = styled.View`
-  margin-top: ${getStatusBarHeight}px;
+  margin-top: ${getStatusBarHeight()}px;
 
   flex: 1;
   align-items: center;
@@ -13,10 +16,12 @@ export const Container = styled.View`
 
 export const Content = styled.View`
   width: 100%;
-  max-height: 40%;
+  max-height: 60%;
   border-top-right-radius: 60px;
+  padding-bottom: ${32 + getBottomSpace()}px;
 
   flex: 1;
+  justify-content: space-around;
   background-color: ${colors.darkBackground};
 `;
 
