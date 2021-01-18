@@ -116,7 +116,7 @@ const StudentSignIn: React.FC = () => {
         <Input
           name="name"
           icon="user"
-          placeholder="name"
+          placeholder="Nome"
           backgroundColor={colors.background}
         />
         <Input

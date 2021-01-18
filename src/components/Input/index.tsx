@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
 
       <TextInput
         keyboardAppearance="dark"
-        placeholderTextColor={colors.inputTextColor}
+        placeholderTextColor={colors.placeholderTextColor}
         {...rest}
       />
     </Container>

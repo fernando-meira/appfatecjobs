@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import {
-  Modal as NativeModal,
-  Text,
-  View,
-  Alert,
-  StyleSheet,
-  TouchableHighlight,
-} from 'react-native';
+import React from 'react';
+import { Modal as NativeModal, View, Alert } from 'react-native';
 
 import * as S from './styles';
 
 interface ModalProps {
   visible: boolean;
+  minHeight?: number;
   footer?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, children, footer }) => {
+const Modal: React.FC<ModalProps> = ({
+  visible,
+  children,
+  footer,
+  minHeight,
+}) => {
   return (
     <S.Container>
       <NativeModal
@@ -28,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({ visible, children, footer }) => {
         }}
       >
         <S.Content>
-          <S.ModalView>
+          <S.ModalView minHeight={minHeight}>
             <S.Title>Crie sua conta</S.Title>
             <View>{children}</View>
           </S.ModalView>

@@ -2,24 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
   View,
+  Alert,
   Image,
   Platform,
   Keyboard,
   ScrollView,
+  Dimensions,
   KeyboardAvoidingView,
 } from 'react-native';
 
 import colors from '~/themes/colors';
 import company from '~/themes/assets/images/company.png';
 
-import { Input, Button, SelectionButton } from '~/components';
+import { Input, Modal, Button, SelectionButton } from '~/components';
 
 import * as S from './styles';
+
+const windowHeight = Dimensions.get('window').height;
 
 const CompanySignIn: React.FC = () => {
   const navigation = useNavigation();
 
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const keyboardDidShow = () => {
     setKeyboardIsOpen(true);
@@ -80,13 +85,86 @@ const CompanySignIn: React.FC = () => {
 
       {!keyboardIsOpen && (
         <S.CreateAccontButton
-          onPress={() => {
-            console.log('Redirecionado para criação da conta');
-          }}
+          borderColor={colors.inputColor}
+          backgroundColor={colors.background}
+          onPress={() => setModalVisible(!modalVisible)}
         >
-          <S.CreateAccontButtonText>Criar conta</S.CreateAccontButtonText>
+          <S.CreateAccontButtonText textColor={colors.primaryColor}>
+            Criar conta
+          </S.CreateAccontButtonText>
         </S.CreateAccontButton>
       )}
+
+      <Modal
+        minHeight={
+          windowHeight < 800 ? windowHeight * 0.85 : windowHeight * 0.75
+        }
+        visible={modalVisible}
+        footer={(
+          <>
+            <S.CreateAccontModalButton
+              onPress={() => Alert.alert('Conta criada com sucesso!')}
+            >
+              <S.CreateAccontButtonText textColor={colors.primaryColor}>
+                Criar conta
+              </S.CreateAccontButtonText>
+            </S.CreateAccontModalButton>
+
+            <S.CreateAccontModalButton
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <S.CreateAccontButtonText textColor={colors.secondaryColor}>
+                Cancelar
+              </S.CreateAccontButtonText>
+            </S.CreateAccontModalButton>
+          </>
+        )}
+      >
+        <Input
+          name="name"
+          icon="user"
+          placeholder="Nome da empresa"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="adress"
+          icon="home"
+          placeholder="Endereço"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="email"
+          icon="mail"
+          placeholder="E-mail"
+          backgroundColor={colors.background}
+        />
+
+        <Input
+          name="phone"
+          icon="phone"
+          placeholder="Telefone"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="cnpj"
+          icon="file-text"
+          placeholder="CNPJ"
+          backgroundColor={colors.background}
+        />
+
+        <Input
+          name="password"
+          icon="lock"
+          placeholder="Senha"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="password-confirmation"
+          icon="lock"
+          placeholder="Confirmar senha"
+          backgroundColor={colors.background}
+        />
+      </Modal>
     </>
   );
 };

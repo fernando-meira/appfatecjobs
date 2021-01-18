@@ -8,4 +8,5 @@ export default {
   textColor: '#F4EDE8',
   inputColor: '#171527',
   inputTextColor: '#EBEAEA',
+  placeholderTextColor: '#939392',
 };
