@@ -1,9 +1,14 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import colors from '~/themes/colors';
 
-export const Container = styled.View`
+interface ContainerProps {
+  backgroundColor?: string;
+}
+
+export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 60px;
   padding: 0 16px;
@@ -14,13 +19,13 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: center;
 
-  background: ${colors.inputColor};
+  background: ${({ backgroundColor }) => backgroundColor || colors.inputColor};
 `;
 
 export const TextInput = styled.TextInput`
-  margin-top: 8px;
-
   flex: 1;
+
+  margin-top: ${Platform.OS === 'android' ? 8 : 0}px;
 
   font-size: 16px;
   font-family: 'Poppins-Regular';

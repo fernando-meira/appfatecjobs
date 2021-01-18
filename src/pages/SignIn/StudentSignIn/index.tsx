@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Image,
+  Alert,
   Platform,
   Keyboard,
   ScrollView,
@@ -11,8 +12,7 @@ import {
 
 import colors from '~/themes/colors';
 import ideaImage from '~/themes/assets/images/idea.png';
-
-import { Input, Button, SelectionButton } from '~/components';
+import { Modal, Input, Button, SelectionButton } from '~/components';
 
 import * as S from './styles';
 
@@ -20,6 +20,7 @@ const StudentSignIn: React.FC = () => {
   const navigation = useNavigation();
 
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const keyboardDidShow = () => {
     setKeyboardIsOpen(true);
@@ -80,13 +81,69 @@ const StudentSignIn: React.FC = () => {
 
       {!keyboardIsOpen && (
         <S.CreateAccontButton
-          onPress={() => {
-            console.log('Redirecionado para criação da conta');
-          }}
+          borderColor={colors.inputColor}
+          backgroundColor={colors.background}
+          onPress={() => setModalVisible(!modalVisible)}
         >
-          <S.CreateAccontButtonText>Criar conta</S.CreateAccontButtonText>
+          <S.CreateAccontButtonText textColor={colors.primaryColor}>
+            Criar conta
+          </S.CreateAccontButtonText>
         </S.CreateAccontButton>
       )}
+
+      <Modal
+        visible={modalVisible}
+        footer={(
+          <>
+            <S.CreateAccontModalButton
+              onPress={() => Alert.alert('Conta criada com sucesso!')}
+            >
+              <S.CreateAccontButtonText textColor={colors.primaryColor}>
+                Criar conta
+              </S.CreateAccontButtonText>
+            </S.CreateAccontModalButton>
+
+            <S.CreateAccontModalButton
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <S.CreateAccontButtonText textColor={colors.secondaryColor}>
+                Cancelar
+              </S.CreateAccontButtonText>
+            </S.CreateAccontModalButton>
+          </>
+        )}
+      >
+        <Input
+          name="name"
+          icon="user"
+          placeholder="name"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="RA"
+          icon="key"
+          placeholder="R.A."
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="email"
+          icon="mail"
+          placeholder="E-mail"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="password"
+          icon="lock"
+          placeholder="Senha"
+          backgroundColor={colors.background}
+        />
+        <Input
+          name="password-confirmation"
+          icon="lock"
+          placeholder="Confirmar senha"
+          backgroundColor={colors.background}
+        />
+      </Modal>
     </>
   );
 };

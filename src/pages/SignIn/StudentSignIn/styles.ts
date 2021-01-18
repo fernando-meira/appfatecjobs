@@ -6,6 +6,15 @@ import {
 
 import colors from '~/themes/colors';
 
+interface CreateAccontButtonProps {
+  borderColor: string;
+  backgroundColor: string;
+}
+
+interface CreateAccontButtonTextProps {
+  textColor: string;
+}
+
 export const Container = styled.View`
   margin-top: ${32 + getStatusBarHeight()}px;
 
@@ -46,23 +55,29 @@ export const ForgotPasswordText = styled.Text`
   font-family: 'Poppins-Regular';
 `;
 
-export const CreateAccontButton = styled.TouchableOpacity`
-  position: absolute;
+export const CreateAccontButton = styled.TouchableOpacity<CreateAccontButtonProps>`
   left: 0;
   right: 0;
   bottom: 0;
+  position: absolute;
 
-  padding: 16px 0 ${16 + getBottomSpace()}px;
   border-top-width: 1px;
-  border-color: ${colors.inputColor};
+  padding: 16px 0 ${16 + getBottomSpace()}px;
+  border-color: ${({ borderColor }) => borderColor};
 
   align-items: center;
 
-  background: ${colors.background};
+  background: ${({ backgroundColor }) => backgroundColor};
 `;
 
-export const CreateAccontButtonText = styled.Text`
+export const CreateAccontButtonText = styled.Text<CreateAccontButtonTextProps>`
   font-size: 18px;
-  color: ${colors.primaryColor};
   font-family: 'Poppins-SemiBold';
+  color: ${({ textColor }) => textColor};
+`;
+
+export const CreateAccontModalButton = styled.TouchableOpacity`
+  flex: 1;
+
+  align-items: center;
 `;

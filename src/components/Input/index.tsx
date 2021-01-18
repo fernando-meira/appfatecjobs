@@ -7,11 +7,17 @@ import { Container, TextInput, Icon } from './styles';
 interface InputProps extends TextInputProps {
   icon: string;
   name: string;
+  backgroundColor?: string;
 }
 
-const Input: React.FC<InputProps> = ({ icon, name, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  icon,
+  name,
+  backgroundColor,
+  ...rest
+}) => {
   return (
-    <Container>
+    <Container backgroundColor={backgroundColor}>
       <Icon name={icon} size={20} color={colors.inputTextColor} />
 
       <TextInput
