@@ -47,29 +47,36 @@ const SignUpStudentModal: React.FC<SignUpStudentModalProps> = ({
         name="name"
         icon="user"
         placeholder="Nome"
+        autoCompleteType="off"
         backgroundColor={colors.background}
       />
       <Input
         name="RA"
         icon="key"
         placeholder="R.A."
+        autoCompleteType="off"
         backgroundColor={colors.background}
       />
       <Input
-        name="email"
         icon="mail"
+        name="email"
         placeholder="E-mail"
+        autoCompleteType="email"
         backgroundColor={colors.background}
       />
       <Input
+        icon="lock"
         name="password"
-        icon="lock"
+        secureTextEntry
         placeholder="Senha"
+        autoCompleteType="password"
         backgroundColor={colors.background}
       />
       <Input
-        name="password-confirmation"
         icon="lock"
+        secureTextEntry
+        autoCompleteType="password"
+        name="password-confirmation"
         placeholder="Confirmar senha"
         backgroundColor={colors.background}
       />

@@ -47,18 +47,21 @@ const SignUpCompanyModal: React.FC<SignUpStudentModalProps> = ({
         name="name"
         icon="user"
         placeholder="Nome da empresa"
+        autoCompleteType="off"
         backgroundColor={colors.background}
       />
       <Input
-        name="adress"
         icon="home"
+        name="adress"
         placeholder="Endereço"
+        autoCompleteType="off"
         backgroundColor={colors.background}
       />
       <Input
-        name="email"
         icon="mail"
+        name="email"
         placeholder="E-mail"
+        autoCompleteType="email"
         backgroundColor={colors.background}
       />
 
@@ -66,24 +69,30 @@ const SignUpCompanyModal: React.FC<SignUpStudentModalProps> = ({
         name="phone"
         icon="phone"
         placeholder="Telefone"
+        autoCompleteType="off"
         backgroundColor={colors.background}
       />
       <Input
         name="cnpj"
         icon="file-text"
         placeholder="CNPJ"
+        autoCompleteType="off"
         backgroundColor={colors.background}
       />
 
       <Input
-        name="password"
         icon="lock"
+        name="password"
+        secureTextEntry
         placeholder="Senha"
+        autoCompleteType="password"
         backgroundColor={colors.background}
       />
       <Input
-        name="password-confirmation"
         icon="lock"
+        secureTextEntry
+        autoCompleteType="password"
+        name="password-confirmation"
         placeholder="Confirmar senha"
         backgroundColor={colors.background}
       />
