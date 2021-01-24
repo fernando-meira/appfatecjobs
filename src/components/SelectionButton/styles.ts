@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 interface TextColorProps {
-  textColor: string;
+  textColor?: string;
 }
 
 export const Container = styled.View`

@@ -4,7 +4,7 @@ import { TouchableOpacityProps } from 'react-native';
 import * as S from './styles';
 
 interface SelectionButtonProps extends TouchableOpacityProps {
-  width?: number;
+  width?: string;
   iconName: string;
   iconColor: string;
   textColor?: string;
