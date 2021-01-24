@@ -6,6 +6,7 @@ import {
   CompanySignIn,
   SelectionProfileType,
   CompletedStudentRegistration,
+  CompletedCompanyRegistration,
 } from '~/pages';
 
 const Auth = createStackNavigator();
@@ -27,6 +28,10 @@ const AuthRoutes: React.FC = () => {
       <Auth.Screen
         name="CompletedStudentRegistration"
         component={CompletedStudentRegistration}
+      />
+      <Auth.Screen
+        name="CompletedCompanyRegistration"
+        component={CompletedCompanyRegistration}
       />
     </Auth.Navigator>
   );

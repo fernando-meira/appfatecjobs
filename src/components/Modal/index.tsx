@@ -5,17 +5,11 @@ import * as S from './styles';
 
 interface ModalProps {
   visible: boolean;
-  minHeight?: number;
   footer?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  visible,
-  children,
-  footer,
-  minHeight,
-}) => {
+const Modal: React.FC<ModalProps> = ({ footer, visible, children }) => {
   return (
     <S.Container>
       <NativeModal
@@ -27,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({
         }}
       >
         <S.Content>
-          <S.ModalView minHeight={minHeight}>
+          <S.ModalView>
             <S.Title>Crie sua conta</S.Title>
             <View>{children}</View>
           </S.ModalView>

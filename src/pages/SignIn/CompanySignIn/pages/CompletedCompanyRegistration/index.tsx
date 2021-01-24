@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import * as S from './styles';
 
-const CompletedStudentRegistration: React.FC = () => {
+const CompletedCompanyRegistration: React.FC = () => {
   const navigation = useNavigation();
 
   return (
@@ -17,14 +17,14 @@ const CompletedStudentRegistration: React.FC = () => {
           {'\n'}
           concluído
         </S.MediumText>
-        <S.SmallText>Agora é só fazer o login</S.SmallText>
+        <S.SmallText>Aguarde, entraremos em contato!</S.SmallText>
       </S.TextWrapper>
 
-      <S.BackButton onPress={() => navigation.navigate('StudentSignIn')}>
+      <S.BackButton onPress={() => navigation.navigate('CompanySignIn')}>
         <S.TextButton>Ok</S.TextButton>
       </S.BackButton>
     </S.Container>
   );
 };
 
-export default CompletedStudentRegistration;
+export default CompletedCompanyRegistration;

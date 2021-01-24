@@ -4,10 +4,6 @@ import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 import colors from '~/themes/colors';
 
-interface ModalViewProps {
-  minHeight?: number;
-}
-
 const windowHeight = Dimensions.get('window').height;
 
 export const Container = styled.View``;
@@ -20,12 +16,12 @@ export const Content = styled.View`
   justify-content: flex-end;
 `;
 
-export const ModalView = styled.View<ModalViewProps>`
+export const ModalView = styled.View`
   width: 100%;
+  height: auto;
   padding: 32px 40px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  min-height: ${({ minHeight }) => minHeight || windowHeight * 0.7}px;
 
   align-items: center;
 
