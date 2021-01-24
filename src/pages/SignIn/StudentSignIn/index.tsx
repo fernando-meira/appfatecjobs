@@ -3,7 +3,6 @@ import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Image,
-  Alert,
   Platform,
   Keyboard,
   ScrollView,
@@ -15,6 +14,7 @@ import ideaImage from '~/themes/assets/images/idea.png';
 import { Modal, Input, Button, SelectionButton } from '~/components';
 
 import * as S from './styles';
+import SignUpStudentModal from './components/SignUpStudentModal';
 
 const StudentSignIn: React.FC = () => {
   const navigation = useNavigation();
@@ -96,59 +96,10 @@ const StudentSignIn: React.FC = () => {
         </S.CreateAccontButton>
       )}
 
-      <Modal
-        visible={modalVisible}
-        footer={(
-          <>
-            <S.CreateAccontModalButton
-              onPress={() => Alert.alert('Conta criada com sucesso!')}
-            >
-              <S.CreateAccontButtonText textColor={colors.primaryColor}>
-                Criar conta
-              </S.CreateAccontButtonText>
-            </S.CreateAccontModalButton>
-
-            <S.CreateAccontModalButton
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <S.CreateAccontButtonText textColor={colors.secondaryColor}>
-                Cancelar
-              </S.CreateAccontButtonText>
-            </S.CreateAccontModalButton>
-          </>
-        )}
-      >
-        <Input
-          name="name"
-          icon="user"
-          placeholder="Nome"
-          backgroundColor={colors.background}
-        />
-        <Input
-          name="RA"
-          icon="key"
-          placeholder="R.A."
-          backgroundColor={colors.background}
-        />
-        <Input
-          name="email"
-          icon="mail"
-          placeholder="E-mail"
-          backgroundColor={colors.background}
-        />
-        <Input
-          name="password"
-          icon="lock"
-          placeholder="Senha"
-          backgroundColor={colors.background}
-        />
-        <Input
-          name="password-confirmation"
-          icon="lock"
-          placeholder="Confirmar senha"
-          backgroundColor={colors.background}
-        />
-      </Modal>
+      <SignUpStudentModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </>
   );
 };
