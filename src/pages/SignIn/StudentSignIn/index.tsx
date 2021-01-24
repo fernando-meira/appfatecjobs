@@ -67,7 +67,12 @@ const StudentSignIn: React.FC = () => {
               <Input name="RA" icon="user" placeholder="R.A." />
               <Input name="password" icon="lock" placeholder="Senha" />
 
-              <Button onPress={() => console.log('Feito')}>Entrar</Button>
+              <Button
+                onPress={() =>
+                  navigation.navigate('CompletedStudentRegistration')}
+              >
+                Entrar
+              </Button>
 
               <S.ForgotPassword
                 onPress={() => console.log('Página de redefinição de senha')}
