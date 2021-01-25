@@ -3,6 +3,7 @@ import { ScrollView, Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { SelectionButton } from '~/components';
+import circle from '~/themes/assets/images/circle.png';
 import selectionImage from '~/themes/assets/images/selection.png';
 
 import colors from '~/themes/colors';
@@ -23,6 +24,7 @@ const SelectionProfileType: React.FC = () => {
         keyboardShouldPersistTaps="handled"
       >
         <S.Container>
+          <S.ImageAbsolute source={circle} />
           <Image source={selectionImage} />
 
           <S.Content>
@@ -33,7 +35,7 @@ const SelectionProfileType: React.FC = () => {
 
             <View>
               <SelectionButton
-                width={86}
+                width="86"
                 iconName="user"
                 textColor={colors.secondaryColor}
                 iconColor={colors.textColor}
@@ -44,7 +46,7 @@ const SelectionProfileType: React.FC = () => {
               </SelectionButton>
 
               <SelectionButton
-                width={126}
+                width="126"
                 iconName="users"
                 textColor={colors.textColor}
                 iconColor={colors.secondaryColor}

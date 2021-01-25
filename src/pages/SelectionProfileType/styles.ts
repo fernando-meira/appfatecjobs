@@ -14,6 +14,12 @@ export const Container = styled.View`
   justify-content: space-between;
 `;
 
+export const ImageAbsolute = styled.Image`
+  left: 0;
+  top: -50px;
+  position: absolute;
+`;
+
 export const Content = styled.View`
   width: 100%;
   max-height: 55%;
