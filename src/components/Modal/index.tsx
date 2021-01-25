@@ -1,24 +1,27 @@
 import React from 'react';
-import { Modal as NativeModal, View, Alert } from 'react-native';
+import { Modal as NativeModal, ModalProps, View } from 'react-native';
 
 import * as S from './styles';
 
-interface ModalProps {
+interface IModalProps extends ModalProps {
   visible: boolean;
   footer?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ footer, visible, children }) => {
+const Modal: React.FC<IModalProps> = ({
+  footer,
+  visible,
+  children,
+  ...rest
+}) => {
   return (
     <S.Container>
       <NativeModal
+        {...rest}
         transparent
-        animationType="slide"
         visible={visible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-        }}
+        animationType="slide"
       >
         <S.Content>
           <S.ModalView>

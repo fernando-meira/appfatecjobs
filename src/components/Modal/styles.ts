@@ -1,10 +1,7 @@
 import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 import colors from '~/themes/colors';
-
-const windowHeight = Dimensions.get('window').height;
 
 export const Container = styled.View``;
 

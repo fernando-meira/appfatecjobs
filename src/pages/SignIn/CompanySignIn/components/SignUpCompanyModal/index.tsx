@@ -25,7 +25,8 @@ const SignUpCompanyModal: React.FC<SignUpStudentModalProps> = ({
   return (
     <Modal
       visible={modalVisible}
-      footer={(
+      onRequestClose={() => setModalVisible(false)}
+      footer={
         <>
           <S.CreateAccontModalButton onPress={handleCreatedAccount}>
             <S.CreateAccontButtonText textColor={colors.primaryColor}>
@@ -41,7 +42,7 @@ const SignUpCompanyModal: React.FC<SignUpStudentModalProps> = ({
             </S.CreateAccontButtonText>
           </S.CreateAccontModalButton>
         </>
-      )}
+      }
     >
       <Input
         name="name"

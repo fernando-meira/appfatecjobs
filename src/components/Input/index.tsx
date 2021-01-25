@@ -21,9 +21,9 @@ const Input: React.FC<InputProps> = ({
       <Icon name={icon} size={20} color={colors.inputTextColor} />
 
       <TextInput
+        {...rest}
         keyboardAppearance="dark"
         placeholderTextColor={colors.placeholderTextColor}
-        {...rest}
       />
     </Container>
   );

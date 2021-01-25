@@ -25,6 +25,7 @@ const SignUpStudentModal: React.FC<SignUpStudentModalProps> = ({
   return (
     <Modal
       visible={modalVisible}
+      onRequestClose={() => setModalVisible(false)}
       footer={(
         <>
           <S.CreateAccontModalButton onPress={handleCreatedAccount}>
