@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import {
+  Welcome,
   StudentSignIn,
   CompanySignIn,
   SelectionProfileType,
@@ -16,9 +17,10 @@ const AuthRoutes: React.FC = () => {
     <Auth.Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#1D2433' },
+        cardStyle: { backgroundColor: '#f7f9f9' },
       }}
     >
+      <Auth.Screen name="Welcome" component={Welcome} />
       <Auth.Screen
         name="SelectionProfileType"
         component={SelectionProfileType}

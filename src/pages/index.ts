@@ -1,3 +1,4 @@
+import Welcome from './WelcomeScreen';
 import StudentSignIn from './SignIn/StudentSignIn';
 import CompanySignIn from './SignIn/CompanySignIn';
 import SelectionProfileType from './SelectionProfileType';
@@ -5,6 +6,7 @@ import CompletedStudentRegistration from './SignIn/StudentSignIn/pages/Completed
 import CompletedCompanyRegistration from './SignIn/CompanySignIn/pages/CompletedCompanyRegistration';
 
 export {
+  Welcome,
   StudentSignIn,
   CompanySignIn,
   SelectionProfileType,
