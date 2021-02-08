@@ -1,4 +1,4 @@
-import Welcome from './WelcomeScreen';
+import Welcome from './Welcome';
 import StudentSignIn from './SignIn/StudentSignIn';
 import CompanySignIn from './SignIn/CompanySignIn';
 import SelectionProfileType from './SelectionProfileType';
