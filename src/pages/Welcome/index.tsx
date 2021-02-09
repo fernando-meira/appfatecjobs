@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Image, SafeAreaView } from 'react-native';
 
+import Logo from '~/themes/assets/svg/small-logo.svg';
 import schoolbooks from '~/themes/assets/images/schoolbooks-monochrome.png';
 
 import * as S from './styles';
@@ -12,6 +13,8 @@ const Welcome: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <S.Container>
+        <Logo />
+
         <S.Title>
           Bem-vindo
           {'\n'}
