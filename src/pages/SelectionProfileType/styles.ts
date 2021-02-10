@@ -1,40 +1,83 @@
 import styled from 'styled-components/native';
 import {
-  getStatusBarHeight,
-  getBottomSpace,
-} from 'react-native-iphone-x-helper';
+  widthPercentageToDP as ww,
+  heightPercentageToDP as wh,
+} from 'react-native-responsive-screen';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
-import colors from '../../themes/colors';
+import colors from '~/themes/colors';
+import handles from '~/themes/assets/svg/handleshake.svg';
+
+interface IRectButtonProps extends RectButtonProps {
+  backgroundColor?: string;
+}
 
 export const Container = styled.View`
-  margin-top: ${16 + getStatusBarHeight()}px;
+  padding: ${wh(8.4)}px ${ww(11)}px;
 
   flex: 1;
   align-items: center;
   justify-content: space-between;
+
+  background: ${colors.background};
 `;
 
-export const ImageAbsolute = styled.Image`
-  left: 0;
-  top: -50px;
+export const Handles = styled(handles).attrs(() => ({
+  height: ww('85%'),
+}))``;
+
+export const StrongText = styled.Text`
+  text-align: center;
+  font-size: ${ww(8)}px;
+  color: ${colors.primaryColor};
+  font-family: 'Poppins-SemiBold';
+`;
+
+export const Description = styled.Text`
+  text-align: center;
+  font-size: ${ww(4)}px;
+  color: ${colors.primaryColor};
+  font-family: 'Poppins-Regular';
+`;
+
+export const ButtonsWrapper = styled.View`
+  position: relative;
+
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Button = styled(RectButton)<IRectButtonProps>`
+  width: 184px;
+  height: 50px;
+  border-radius: 8px;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || colors.primaryColor};
+`;
+
+export const CompanyButtonText = styled.Text`
+  text-align: center;
+  font-size: ${ww(4.4)}px;
+  color: ${colors.primaryColor};
+  font-family: 'Poppins-SemiBold';
+`;
+
+export const StudentButton = styled(Button)`
+  right: 0;
+  z-index: -1;
   position: absolute;
 `;
 
-export const Content = styled.View`
-  width: 100%;
-  max-height: 55%;
-  border-top-right-radius: 60px;
-  padding-bottom: ${32 + getBottomSpace()}px;
-
-  flex: 1;
-  justify-content: space-around;
-  background-color: ${colors.darkBackground};
-`;
-
-export const Text = styled.Text`
-  padding: 40px;
-
-  font-size: 20px;
-  color: ${colors.textColor};
-  font-family: 'Poppins-Regular';
+export const StudentButtonText = styled.Text`
+  text-align: center;
+  font-size: ${ww(4.4)}px;
+  color: ${colors.secondaryColor};
+  font-family: 'Poppins-SemiBold';
 `;

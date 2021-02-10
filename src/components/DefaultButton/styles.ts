@@ -2,7 +2,11 @@ import styled from 'styled-components/native';
 
 import colors from '~/themes/colors';
 
-export const Wrapper = styled.TouchableWithoutFeedback`
+interface IWrapperProps {
+  backgroundColor?: string;
+}
+
+export const Wrapper = styled.TouchableOpacity<IWrapperProps>`
   width: 184px;
   height: 50px;
   border-radius: 8px;
@@ -10,5 +14,6 @@ export const Wrapper = styled.TouchableWithoutFeedback`
   align-items: center;
   justify-content: center;
 
-  background-color: ${colors.primaryColor};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || colors.primaryColor};
 `;
