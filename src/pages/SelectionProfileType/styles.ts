@@ -3,17 +3,16 @@ import {
   widthPercentageToDP as ww,
   heightPercentageToDP as wh,
 } from 'react-native-responsive-screen';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
 import colors from '~/themes/colors';
 import handles from '~/themes/assets/svg/handleshake.svg';
 
-interface IRectButtonProps extends RectButtonProps {
+interface IButtonProps {
   backgroundColor?: string;
 }
 
 export const Container = styled.View`
-  padding: ${wh(8.4)}px ${ww(11)}px;
+  padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;
   align-items: center;
@@ -50,8 +49,10 @@ export const ButtonsWrapper = styled.View`
   justify-content: space-between;
 `;
 
-export const Button = styled(RectButton)<IRectButtonProps>`
-  width: 184px;
+export const Button = styled.TouchableOpacity.attrs(() => ({
+  activeOpacity: 1,
+})) <IButtonProps>`
+  width: ${ww(44.4)}px;
   height: 50px;
   border-radius: 8px;
 

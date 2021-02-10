@@ -8,7 +8,7 @@ import colors from '~/themes/colors';
 import schoolbooks from '~/themes/assets/svg/schoolbooks.svg';
 
 export const Container = styled.View`
-  padding: ${wh(8.4)}px ${ww(11)}px;
+  padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;
   align-items: center;
