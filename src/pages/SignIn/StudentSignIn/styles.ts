@@ -30,6 +30,8 @@ export const HeaderWrapper = styled.View`
   justify-content: space-between;
 `;
 
+export const BackButton = styled.TouchableOpacity``;
+
 export const TextTopWrapper = styled.View`
   margin: ${wh(5)}px 0;
 `;

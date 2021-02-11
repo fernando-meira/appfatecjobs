@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {
   Welcome,
   StudentSignIn,
+  StudentSignUp,
   CompanySignIn,
   SelectionProfileType,
   CompletedStudentRegistration,
@@ -26,6 +27,7 @@ const AuthRoutes: React.FC = () => {
         component={SelectionProfileType}
       />
       <Auth.Screen name="StudentSignIn" component={StudentSignIn} />
+      <Auth.Screen name="StudentSignUp" component={StudentSignUp} />
       <Auth.Screen name="CompanySignIn" component={CompanySignIn} />
       <Auth.Screen
         name="CompletedStudentRegistration"

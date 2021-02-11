@@ -9,7 +9,7 @@ import Logo from '~/themes/assets/svg/small-logo.svg';
 
 import * as S from './styles';
 
-const StudentSignIn: React.FC = () => {
+const StudentSignUp: React.FC = () => {
   const navigation = useNavigation();
 
   return (
@@ -28,50 +28,60 @@ const StudentSignIn: React.FC = () => {
             <Logo />
           </S.HeaderWrapper>
 
-          <S.TextTopWrapper>
-            <S.Title>Vamos fazer seu login.</S.Title>
-            <S.SubTitle>Bem-vindo de volta!</S.SubTitle>
-          </S.TextTopWrapper>
+          <S.Title>Crie a conta estudantil.</S.Title>
 
           <S.InputWrapper>
             <Input
-              name="RA"
+              name="name"
               icon="user"
-              placeholder="R.A"
+              placeholder="Nome"
               backgroundColor={colors.white}
               borderColor={colors.primaryColor}
             />
 
             <Input
               icon="key"
-              name="Senha"
-              placeholder="Senha"
+              name="ra"
+              placeholder="R.A"
               backgroundColor={colors.white}
               borderColor={colors.primaryColor}
             />
 
-            <S.ForgotPassword>
-              <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
-            </S.ForgotPassword>
+            <Input
+              icon="mail"
+              name="email"
+              placeholder="E-mail"
+              backgroundColor={colors.white}
+              borderColor={colors.primaryColor}
+            />
+
+            <Input
+              icon="lock"
+              name="password"
+              placeholder="E-mail"
+              backgroundColor={colors.white}
+              borderColor={colors.primaryColor}
+            />
+
+            <Input
+              icon="lock"
+              name="confirm-password"
+              placeholder="Confirmar senha"
+              backgroundColor={colors.white}
+              borderColor={colors.primaryColor}
+            />
           </S.InputWrapper>
         </S.TopContent>
 
-        <S.CreateAccount onPress={() => navigation.navigate('StudentSignUp')}>
-          <S.CreateAccountText marginRight>
-            Não possui conta?
-          </S.CreateAccountText>
-
-          <S.CreateAccountText fontFamily="Poppins-SemiBold">
-            Registre-se
-          </S.CreateAccountText>
-        </S.CreateAccount>
-
-        <DefaultButton>
-          <S.TextButton>Entrar</S.TextButton>
+        <DefaultButton
+          style={{ alignSelf: 'center' }}
+          onPress={() => navigation.navigate('CompletedStudentRegistration')}
+        >
+          <S.TextButton>Cadastrar</S.TextButton>
         </DefaultButton>
       </S.Container>
     </SafeAreaView>
   );
 };
 
-export default StudentSignIn;
+export default StudentSignUp;

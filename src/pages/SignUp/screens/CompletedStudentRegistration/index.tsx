@@ -2,6 +2,8 @@ import React from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
+import colors from '~/themes/colors';
+
 import * as S from './styles';
 
 const CompletedStudentRegistration: React.FC = () => {
@@ -9,7 +11,7 @@ const CompletedStudentRegistration: React.FC = () => {
 
   return (
     <S.Container>
-      <FeatherIcon name="check" size={70} color="#34E3B8" />
+      <FeatherIcon name="check" size={70} color={colors.primaryColor} />
 
       <S.TextWrapper>
         <S.MediumText>
