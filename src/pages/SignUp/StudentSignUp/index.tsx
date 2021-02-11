@@ -1,5 +1,5 @@
-import React from 'react';
-import { SafeAreaView } from 'react-native';
+import React, { useCallback, useState, useEffect } from 'react';
+import { SafeAreaView, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
@@ -11,6 +11,21 @@ import * as S from './styles';
 
 const StudentSignUp: React.FC = () => {
   const navigation = useNavigation();
+
+  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+
+  const keyboardDidShow = useCallback(() => {
+    setKeyboardIsOpen(true);
+  }, []);
+
+  const keyboardDidHide = useCallback(() => {
+    setKeyboardIsOpen(false);
+  }, []);
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+  }, [keyboardDidShow, keyboardDidHide]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -73,12 +88,14 @@ const StudentSignUp: React.FC = () => {
           </S.InputWrapper>
         </S.TopContent>
 
-        <DefaultButton
-          style={{ alignSelf: 'center' }}
-          onPress={() => navigation.navigate('CompletedStudentRegistration')}
-        >
-          <S.TextButton>Cadastrar</S.TextButton>
-        </DefaultButton>
+        {!keyboardIsOpen && (
+          <DefaultButton
+            style={{ alignSelf: 'center' }}
+            onPress={() => navigation.navigate('CompletedStudentRegistration')}
+          >
+            <S.TextButton>Cadastrar</S.TextButton>
+          </DefaultButton>
+        )}
       </S.Container>
     </SafeAreaView>
   );

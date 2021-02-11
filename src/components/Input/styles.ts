@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {
   widthPercentageToDP as ww,
@@ -31,8 +30,6 @@ export const Container = styled.View<ContainerProps>`
 `;
 
 export const TextInput = styled.TextInput`
-  margin-top: ${Platform.OS === 'android' ? 6 : 0}px;
-
   flex: 1;
 
   font-size: 16px;

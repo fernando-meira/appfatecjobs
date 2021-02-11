@@ -1,8 +1,9 @@
 import React from 'react';
-import FeatherIcon from 'react-native-vector-icons/Feather';
+import Lottie from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import colors from '~/themes/colors';
+import check from '~/themes/assets/json/check.json';
 
 import * as S from './styles';
 
@@ -11,7 +12,13 @@ const CompletedStudentRegistration: React.FC = () => {
 
   return (
     <S.Container>
-      <FeatherIcon name="check" size={70} color={colors.primaryColor} />
+      <Lottie
+        autoPlay
+        autoSize
+        loop={false}
+        source={check}
+        resizeMode="contain"
+      />
 
       <S.TextWrapper>
         <S.MediumText>
