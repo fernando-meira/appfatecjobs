@@ -1,106 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import {
-  View,
-  Image,
-  Platform,
-  Keyboard,
-  ScrollView,
-  KeyboardAvoidingView,
-} from 'react-native';
+import React from 'react';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import { SafeAreaView } from 'react-native';
 
 import colors from '~/themes/colors';
-import ideaImage from '~/themes/assets/images/idea.png';
-import { Modal, Input, Button, SelectionButton } from '~/components';
+import { DefaultButton, Input } from '~/components';
+import Logo from '~/themes/assets/svg/small-logo.svg';
 
 import * as S from './styles';
-import SignUpStudentModal from './components/SignUpStudentModal';
 
 const StudentSignIn: React.FC = () => {
-  const navigation = useNavigation();
-
-  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const keyboardDidShow = () => {
-    setKeyboardIsOpen(true);
-  };
-
-  const keyboardDidHide = () => {
-    setKeyboardIsOpen(false);
-  };
-
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-  }, []);
-
   return (
-    <>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        enabled
-      >
-        <ScrollView
-          contentContainerStyle={{ flex: 1 }}
-          keyboardShouldPersistTaps="handled"
-        >
-          <S.Container>
-            <S.ReturnButtonWrapper>
-              <SelectionButton
-                width={60}
-                iconName="chevrons-left"
-                iconColor={colors.background}
-                backgroundColor={colors.primaryColor}
-                onPress={() => navigation.navigate('SelectionProfileType')}
-              />
-            </S.ReturnButtonWrapper>
+    <SafeAreaView style={{ flex: 1 }}>
+      <S.Container>
+        <S.TopContent>
+          <S.HeaderWrapper>
+            <FeatherIcon
+              size={24}
+              name="corner-up-left"
+              color={colors.primaryColor}
+            />
 
-            <S.ContentWrapper>
-              <Image source={ideaImage} />
+            <Logo />
+          </S.HeaderWrapper>
 
-              <View>
-                <S.Title>Login aluno</S.Title>
-              </View>
+          <S.TextTopWrapper>
+            <S.Title>Vamos fazer seu login.</S.Title>
+            <S.SubTitle>Bem-vindo de volta!</S.SubTitle>
+          </S.TextTopWrapper>
 
-              <Input name="RA" icon="user" placeholder="R.A." />
-              <Input name="password" icon="lock" placeholder="Senha" />
+          <S.InputWrapper>
+            <Input
+              name="RA"
+              icon="user"
+              placeholder="R.A"
+              backgroundColor={colors.white}
+              borderColor={colors.primaryColor}
+            />
 
-              <Button
-                onPress={() =>
-                  navigation.navigate('CompletedStudentRegistration')}
-              >
-                Entrar
-              </Button>
+            <Input
+              icon="key"
+              name="Senha"
+              placeholder="Senha"
+              backgroundColor={colors.white}
+              borderColor={colors.primaryColor}
+            />
 
-              <S.ForgotPassword
-                onPress={() => console.log('Página de redefinição de senha')}
-              >
-                <S.ForgotPasswordText>Redefinir Senha</S.ForgotPasswordText>
-              </S.ForgotPassword>
-            </S.ContentWrapper>
-          </S.Container>
-        </ScrollView>
-      </KeyboardAvoidingView>
+            <S.ForgotPassword>
+              <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
+            </S.ForgotPassword>
+          </S.InputWrapper>
+        </S.TopContent>
 
-      {!keyboardIsOpen && (
-        <S.CreateAccontButton
-          borderColor={colors.inputColor}
-          backgroundColor={colors.background}
-          onPress={() => setModalVisible(!modalVisible)}
-        >
-          <S.CreateAccontButtonText textColor={colors.primaryColor}>
-            Criar conta
-          </S.CreateAccontButtonText>
-        </S.CreateAccontButton>
-      )}
+        <S.CreateAccount>
+          <S.CreateAccountText marginRight>
+            Não possui conta?
+          </S.CreateAccountText>
 
-      <SignUpStudentModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
-    </>
+          <S.CreateAccountText fontFamily="Poppins-SemiBold">
+            Registre-se
+          </S.CreateAccountText>
+        </S.CreateAccount>
+
+        <DefaultButton>
+          <S.TextButton>Entrar</S.TextButton>
+        </DefaultButton>
+      </S.Container>
+    </SafeAreaView>
   );
 };
 

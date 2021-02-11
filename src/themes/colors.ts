@@ -5,8 +5,7 @@ export default {
   primaryColor: '#1D2433',
   secondaryColor: '#F2F2F2',
 
-  textColor: '#F4EDE8',
-  inputColor: '#171527',
-  inputTextColor: '#EBEAEA',
   placeholderTextColor: '#778485',
+
+  white: '#ffffff',
 };

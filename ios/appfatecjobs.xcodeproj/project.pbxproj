@@ -22,6 +22,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8AF89D52754AD3136542ADFB /* libPods-appfatecjobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC11DDD910FB248D5DCBB67 /* libPods-appfatecjobs.a */; };
 		D29AB1E9D49AF3308474A97E /* libPods-appfatecjobs-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31771875F68BDF7B54AC7601 /* libPods-appfatecjobs-tvOSTests.a */; };
+		623114E446F94AF7AFC413F4 /* feather1s.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF16968C3278465B9CD41BAD /* feather1s.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		EBD2F491AEC735D13CF91BD7 /* Pods-appfatecjobs-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appfatecjobs-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-appfatecjobs-tvOSTests/Pods-appfatecjobs-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		CF16968C3278465B9CD41BAD /* feather1s.ttf */ = {isa = PBXFileReference; name = "feather1s.ttf"; path = "../node_modules/react-native-feather1s/Fonts/feather1s.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				88661C95518A4DB58FA782F2 /* Poppins-Regular.ttf */,
 				E222DEEA373242B1BAEA0D74 /* Poppins-SemiBold.ttf */,
+				CF16968C3278465B9CD41BAD /* feather1s.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1FE32251ED4B4074A3AD5FC6 /* Poppins-Regular.ttf in Resources */,
 				54244EF29BE243F389D4166D /* Poppins-SemiBold.ttf in Resources */,
+				623114E446F94AF7AFC413F4 /* feather1s.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
