@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import colors from '~/themes/colors';
-import { DefaultButton, Input } from '~/components';
+import { DefaultButton, Input, TextInput } from '~/components';
 import Logo from '~/themes/assets/svg/small-logo.svg';
 
 import * as S from './styles';
@@ -49,21 +49,17 @@ const StudentSignIn: React.FC = () => {
           </S.TextTopWrapper>
 
           <S.InputWrapper>
-            <Input
-              name="RA"
-              icon="user"
-              placeholder="R.A"
-              backgroundColor={colors.white}
-              borderColor={colors.primaryColor}
-            />
+            <TextInput label="R.A." />
 
-            <Input
+            <TextInput label="Senha" isPassword />
+
+            {/* <TextInput
               icon="key"
               name="Senha"
               placeholder="Senha"
               backgroundColor={colors.white}
               borderColor={colors.primaryColor}
-            />
+            /> */}
 
             <S.ForgotPassword>
               <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
