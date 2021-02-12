@@ -1,20 +1,26 @@
-import React, { useEffect, useRef } from 'react';
-import {
-  FloatingLabelInput,
-  FloatingLabelProps,
-} from 'react-native-floating-label-input';
+import React, { useRef, useEffect } from 'react';
+import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
+import colors from '../../themes/colors';
 import * as S from './styles';
+
+interface InputProps extends TextInputProps {
+  icon: string;
+  name: string;
+  backgroundColor?: string;
+}
 
 interface IIputValueReference {
   value: string;
 }
-interface ITextInputProps extends FloatingLabelProps {
-  name: string;
-}
 
-const TextInput: React.FC<ITextInputProps> = ({ name, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  icon,
+  name,
+  backgroundColor,
+  ...rest
+}) => {
   const inputElementRef = useRef<any>(null);
   const { fieldName, registerField, error, defaultValue = '' } = useField(name);
   const inputValueRef = useRef<IIputValueReference>({ value: defaultValue });
@@ -36,17 +42,21 @@ const TextInput: React.FC<ITextInputProps> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <S.Wrapper>
-      <FloatingLabelInput
+    <S.Container backgroundColor={backgroundColor}>
+      <S.Icon name={icon} size={20} color={colors.primaryColor} />
+
+      <S.TextInput
         {...rest}
+        keyboardAppearance="dark"
+        placeholderTextColor={colors.placeholderTextColor}
         ref={inputElementRef}
         defaultValue={defaultValue}
         onChangeText={value => {
           inputValueRef.current.value = value;
         }}
       />
-    </S.Wrapper>
+    </S.Container>
   );
 };
 
-export default TextInput;
+export default Input;
