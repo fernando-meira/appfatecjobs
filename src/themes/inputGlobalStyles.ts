@@ -6,6 +6,9 @@ setGlobalStyles.containerStyles = {
   height: 50,
   borderWidth: 1,
   borderRadius: 8,
+  paddingLeft: 8,
+  paddingRight: 8,
+  backgroundColor: colors.white,
   borderColor: colors.primaryColor,
 };
 
@@ -17,7 +20,7 @@ setGlobalStyles.customLabelStyles = {
 
 setGlobalStyles.inputStyles = {
   marginTop: 8,
-  paddingLeft: 6,
+  paddingLeft: 5,
 
   fontSize: 16,
   color: colors.primaryColor,

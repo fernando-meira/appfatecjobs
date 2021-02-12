@@ -1,10 +1,11 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { SafeAreaView, Keyboard } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
-import { DefaultButton, Input } from '~/components';
+import { DefaultButton, Input, TextInput } from '~/components';
 import Logo from '~/themes/assets/svg/small-logo.svg';
 
 import * as S from './styles';
@@ -12,91 +13,138 @@ import * as S from './styles';
 const StudentSignUp: React.FC = () => {
   const navigation = useNavigation();
 
-  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmationPassword, setConfirmationPassword] = useState('');
 
-  const keyboardDidShow = useCallback(() => {
-    setKeyboardIsOpen(true);
-  }, []);
-
-  const keyboardDidHide = useCallback(() => {
-    setKeyboardIsOpen(false);
-  }, []);
-
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-  }, [keyboardDidShow, keyboardDidHide]);
+  console.log([name, user, email, password, confirmationPassword]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <S.Container>
-        <S.TopContent>
-          <S.HeaderWrapper>
-            <S.BackButton onPress={() => navigation.goBack()}>
-              <FeatherIcon
-                size={24}
-                name="corner-up-left"
-                color={colors.primaryColor}
-              />
-            </S.BackButton>
+      <KeyboardAwareScrollView>
+        <S.Container>
+          <S.TopContent>
+            <S.HeaderWrapper>
+              <S.BackButton onPress={() => navigation.goBack()}>
+                <FeatherIcon
+                  size={24}
+                  name="corner-up-left"
+                  color={colors.primaryColor}
+                />
+              </S.BackButton>
 
-            <Logo />
-          </S.HeaderWrapper>
+              <Logo />
+            </S.HeaderWrapper>
 
-          <S.Title>Crie a conta estudantil.</S.Title>
+            <View>
+              <S.Title>Crie a conta estudantil.</S.Title>
+            </View>
 
-          <S.InputWrapper>
-            <Input
-              name="name"
-              icon="user"
-              placeholder="Nome"
-              backgroundColor={colors.white}
-              borderColor={colors.primaryColor}
+            <TextInput
+              label="Nome"
+              value={name}
+              leftComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="user"
+                  color={colors.primaryColor}
+                />
+              )}
+              onChangeText={value => setName(value)}
             />
 
-            <Input
-              icon="key"
-              name="ra"
-              placeholder="R.A"
-              backgroundColor={colors.white}
-              borderColor={colors.primaryColor}
+            <TextInput
+              label="R.A."
+              value={user}
+              maxLength={13}
+              keyboardType="numeric"
+              leftComponent={
+                <FeatherIcon size={20} name="key" color={colors.primaryColor} />
+              }
+              onChangeText={value => setUser(value)}
             />
 
-            <Input
-              icon="mail"
-              name="email"
-              placeholder="E-mail"
-              backgroundColor={colors.white}
-              borderColor={colors.primaryColor}
+            <TextInput
+              value={email}
+              label="E-mail"
+              keyboardType="email-address"
+              leftComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="mail"
+                  color={colors.primaryColor}
+                />
+              )}
+              onChangeText={value => setEmail(value)}
             />
 
-            <Input
-              icon="lock"
-              name="password"
-              placeholder="E-mail"
-              backgroundColor={colors.white}
-              borderColor={colors.primaryColor}
+            <TextInput
+              isPassword
+              label="Senha"
+              value={password}
+              onChangeText={value => setPassword(value)}
+              leftComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="lock"
+                  color={colors.primaryColor}
+                />
+              )}
+              customShowPasswordComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="eye"
+                  color={colors.placeholderTextColor}
+                />
+              )}
+              customHidePasswordComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="eye-off"
+                  color={colors.placeholderTextColor}
+                />
+              )}
             />
 
-            <Input
-              icon="lock"
-              name="confirm-password"
-              placeholder="Confirmar senha"
-              backgroundColor={colors.white}
-              borderColor={colors.primaryColor}
+            <TextInput
+              isPassword
+              label="Confirmar senha"
+              value={confirmationPassword}
+              onChangeText={value => setConfirmationPassword(value)}
+              leftComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="lock"
+                  color={colors.primaryColor}
+                />
+              )}
+              customShowPasswordComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="eye"
+                  color={colors.placeholderTextColor}
+                />
+              )}
+              customHidePasswordComponent={(
+                <FeatherIcon
+                  size={20}
+                  name="eye-off"
+                  color={colors.placeholderTextColor}
+                />
+              )}
             />
-          </S.InputWrapper>
-        </S.TopContent>
+          </S.TopContent>
 
-        {!keyboardIsOpen && (
           <DefaultButton
-            style={{ alignSelf: 'center' }}
+            style={{ alignSelf: 'center', marginBottom: 20 }}
             onPress={() => navigation.navigate('CompletedStudentRegistration')}
           >
             <S.TextButton>Cadastrar</S.TextButton>
           </DefaultButton>
-        )}
-      </S.Container>
+        </S.Container>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

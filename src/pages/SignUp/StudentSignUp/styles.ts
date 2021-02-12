@@ -7,9 +7,11 @@ import {
 import colors from '~/themes/colors';
 
 export const Container = styled.View`
+  height: ${wh('95%')}px;
   padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;
+  justify-content: space-between;
 `;
 
 export const TopContent = styled.View`
@@ -17,7 +19,7 @@ export const TopContent = styled.View`
 `;
 
 export const HeaderWrapper = styled.View`
-  width: 50%;
+  width: 100%;
 
   flex-direction: row;
   align-items: center;

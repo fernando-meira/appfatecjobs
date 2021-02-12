@@ -12,6 +12,7 @@ interface ICreateAccountTextProps {
 }
 
 export const Container = styled.View`
+  height: ${wh('95%')}px;
   padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;
@@ -23,8 +24,6 @@ export const TopContent = styled.View`
 `;
 
 export const HeaderWrapper = styled.View`
-  width: 50%;
-
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
