@@ -12,7 +12,6 @@ interface ICreateAccountTextProps {
 }
 
 export const Container = styled.View`
-  height: ${wh('95%')}px;
   padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;

@@ -4,6 +4,7 @@ import {
   FloatingLabelProps,
 } from 'react-native-floating-label-input';
 import { useField } from '@unform/core';
+import colors from '~/themes/colors';
 
 import * as S from './styles';
 

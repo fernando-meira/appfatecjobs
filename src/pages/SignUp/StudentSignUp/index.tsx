@@ -44,6 +44,7 @@ const StudentSignUp: React.FC = () => {
 
             <TextInput
               label="Nome"
+              name="name"
               value={name}
               leftComponent={(
                 <FeatherIcon
@@ -57,6 +58,7 @@ const StudentSignUp: React.FC = () => {
 
             <TextInput
               label="R.A."
+              name="name"
               value={user}
               maxLength={13}
               keyboardType="numeric"
@@ -68,6 +70,7 @@ const StudentSignUp: React.FC = () => {
 
             <TextInput
               value={email}
+              name="name"
               label="E-mail"
               keyboardType="email-address"
               leftComponent={(
@@ -82,6 +85,7 @@ const StudentSignUp: React.FC = () => {
 
             <TextInput
               isPassword
+              name="name"
               label="Senha"
               value={password}
               onChangeText={value => setPassword(value)}
@@ -110,6 +114,7 @@ const StudentSignUp: React.FC = () => {
 
             <TextInput
               isPassword
+              name="name"
               label="Confirmar senha"
               value={confirmationPassword}
               onChangeText={value => setConfirmationPassword(value)}
