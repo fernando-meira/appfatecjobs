@@ -9,7 +9,7 @@ setGlobalStyles.containerStyles = {
   paddingLeft: 8,
   paddingRight: 8,
   backgroundColor: colors.white,
-  borderColor: colors.primaryColor,
+  borderColor: colors.placeholderTextColor,
 };
 
 setGlobalStyles.customLabelStyles = {

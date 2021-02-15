@@ -1,10 +1,11 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { Platform } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import colors from '~/themes/colors';
 
 interface ContainerProps {
+  borderColor?: string;
   backgroundColor?: string;
 }
 
@@ -12,11 +13,20 @@ export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 60px;
   padding: 0 16px;
+  border-width: 1px;
   margin-bottom: 8px;
   border-radius: 10px;
+
+  ${({ borderColor }) =>
+    borderColor &&
+    css`
+      border-color: ${borderColor};
+    `}
+
   align-items: center;
   flex-direction: row;
   justify-content: center;
+
   background: ${({ backgroundColor }) => backgroundColor || colors.white};
 `;
 

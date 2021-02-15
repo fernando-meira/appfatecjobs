@@ -1,31 +1,16 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { Form } from '@unform/mobile';
-import { FormHandles } from '@unform/core';
+import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
-import { DefaultButton, TextInput, Input } from '~/components';
+import { DefaultButton, TextInput } from '~/components';
 import Logo from '~/themes/assets/svg/small-logo.svg';
 
 import * as S from './styles';
 
-interface ISignInProps {
-  user: string;
-  password: string;
-}
-
 const StudentSignIn: React.FC = () => {
   const navigation = useNavigation();
-  const formRef = useRef<FormHandles>(null);
-
-  const [user, setUser] = useState('');
-
-  const handleSingIn = useCallback((data: ISignInProps) => {
-    console.log(data);
-  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -48,54 +33,44 @@ const StudentSignIn: React.FC = () => {
             <S.SubTitle>Bem-vindo de volta!</S.SubTitle>
           </S.TextTopWrapper>
 
-          <Form onSubmit={handleSingIn} ref={formRef}>
-            {/* <Input name="user" icon="user" placeholder="R.A." />
+          <TextInput
+            label="R.A."
+            maxLength={13}
+            keyboardType="numeric"
+            leftComponent={
+              <FeatherIcon
+                size={20}
+                name="user"
+                color={colors.placeholderTextColor}
+              />
+            }
+          />
 
-            <Input name="password" icon="lock" placeholder="Senha" /> */}
-
-            <TextInput
-              name="user"
-              label="R.A."
-              value={user}
-              maxLength={13}
-              onChangeText={value => setUser(value)}
-              keyboardType="numeric"
-              leftComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="user"
-                  color={colors.primaryColor}
-                />
-              )}
-            />
-
-            <TextInput
-              label="Senha"
-              isPassword
-              name="password"
-              leftComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="lock"
-                  color={colors.primaryColor}
-                />
-              )}
-              customShowPasswordComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="eye"
-                  color={colors.placeholderTextColor}
-                />
-              )}
-              customHidePasswordComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="eye-off"
-                  color={colors.placeholderTextColor}
-                />
-              )}
-            />
-          </Form>
+          <TextInput
+            label="Senha"
+            isPassword
+            leftComponent={
+              <FeatherIcon
+                size={20}
+                name="lock"
+                color={colors.placeholderTextColor}
+              />
+            }
+            customShowPasswordComponent={
+              <FeatherIcon
+                size={20}
+                name="eye"
+                color={colors.placeholderTextColor}
+              />
+            }
+            customHidePasswordComponent={
+              <FeatherIcon
+                size={20}
+                name="eye-off"
+                color={colors.placeholderTextColor}
+              />
+            }
+          />
 
           <S.ForgotPassword>
             <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
@@ -112,7 +87,7 @@ const StudentSignIn: React.FC = () => {
           </S.CreateAccountText>
         </S.CreateAccount>
 
-        <DefaultButton onPress={() => formRef.current?.submitForm()}>
+        <DefaultButton>
           <S.TextButton>Entrar</S.TextButton>
         </DefaultButton>
       </S.Container>
