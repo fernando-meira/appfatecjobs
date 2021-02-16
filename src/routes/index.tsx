@@ -11,6 +11,8 @@ import {
   CompletedCompanyRegistration,
 } from '~/pages';
 
+import Teste from '~/pages/Teste';
+
 const Auth = createStackNavigator();
 
 const AuthRoutes: React.FC = () => {
@@ -20,8 +22,10 @@ const AuthRoutes: React.FC = () => {
         headerShown: false,
         cardStyle: { backgroundColor: '#f7f9f9' },
       }}
+      initialRouteName="Welcome"
     >
       <Auth.Screen name="Welcome" component={Welcome} />
+      <Auth.Screen name="Teste" component={Teste} />
       <Auth.Screen
         name="SelectionProfileType"
         component={SelectionProfileType}

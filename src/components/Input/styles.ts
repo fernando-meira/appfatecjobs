@@ -9,6 +9,11 @@ interface ContainerProps {
   backgroundColor?: string;
 }
 
+interface PlaceholderLabelProps {
+  isFocused: boolean;
+  isFilled: boolean;
+}
+
 export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 60px;
@@ -30,12 +35,39 @@ export const Container = styled.View<ContainerProps>`
   background: ${({ backgroundColor }) => backgroundColor || colors.white};
 `;
 
+export const PlaceholderLabel = styled.Text<PlaceholderLabelProps>`
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+
+  ${props =>
+    props.isFocused || props.isFilled
+      ? css`
+          margin-left: 42px;
+
+          font-size: 10px;
+          transform: translateY(5px);
+        `
+      : css`
+          margin-left: 42px;
+
+          font-size: 16px;
+          transform: translateY(25px);
+        `}
+
+  color: ${colors.placeholderTextColor};
+`;
+
 export const TextInput = styled.TextInput`
+  margin: 0;
+  padding: 0;
+
   flex: 1;
-  margin-top: ${Platform.OS === 'android' ? 8 : 0}px;
+
   font-size: 16px;
-  font-family: 'Poppins-Regular';
   color: ${colors.primaryColor};
+  font-family: 'Poppins-Regular';
 `;
 
 export const Icon = styled(FeatherIcon)`
