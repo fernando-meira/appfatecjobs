@@ -1,13 +1,14 @@
-import React from 'react';
-import * as Yup from 'yup';
-import { Alert, SafeAreaView } from 'react-native';
+import React, { useEffect } from 'react';
+import * as yup from 'yup';
+import { Alert, SafeAreaView, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import colors from '~/themes/colors';
-import { DefaultButton, TextInput } from '~/components';
 import Logo from '~/themes/assets/svg/small-logo.svg';
+import { DefaultButton, TextInput } from '~/components';
 
 import * as S from './styles';
 
@@ -16,12 +17,28 @@ interface IFormProps {
   password: string;
 }
 
+const schema = yup.object().shape({
+  user: yup.number().required(),
+  password: yup.string().required(),
+});
+
 const StudentSignIn: React.FC = () => {
   const navigation = useNavigation();
 
-  const { handleSubmit, control } = useForm();
-  const onSubmit = (data: IFormProps) =>
-    Alert.alert('Form Data', JSON.stringify(data));
+  const { handleSubmit, register, control, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  // console.log('errors fora da function', errors);
+
+  const onSubmit = (data: IFormProps) => {
+    Alert.alert('VAII PORRA', 'APARECE ESSA MERDA');
+  };
+
+  useEffect(() => {
+    register({ name: 'user' });
+    register({ name: 'password' });
+  }, [register]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -29,7 +46,7 @@ const StudentSignIn: React.FC = () => {
         <S.TopContent>
           <S.HeaderWrapper>
             <S.BackButton onPress={() => navigation.goBack()}>
-              <FeatherIcon
+              <Icon
                 size={24}
                 name="corner-up-left"
                 color={colors.primaryColor}
@@ -41,6 +58,7 @@ const StudentSignIn: React.FC = () => {
 
           <S.TextTopWrapper>
             <S.Title>Vamos fazer seu login.</S.Title>
+
             <S.SubTitle>Bem-vindo de volta!</S.SubTitle>
           </S.TextTopWrapper>
 
@@ -49,29 +67,28 @@ const StudentSignIn: React.FC = () => {
             name="user"
             defaultValue=""
             render={({ onChange, value }) => (
-              <>
-                <TextInput
-                  label="R.A."
-                  maxLength={13}
-                  value={value}
-                  keyboardType="numeric"
-                  onChangeText={onChange}
-                  leftComponent={
-                    <FeatherIcon
-                      size={20}
-                      name="user"
-                      color={colors.placeholderTextColor}
-                    />
-                  }
-                />
-              </>
+              <TextInput
+                label="R.A."
+                value={value}
+                maxLength={13}
+                keyboardType="numeric"
+                onChangeText={onChange}
+                leftComponent={
+                  <Icon
+                    size={20}
+                    name="user"
+                    color={colors.placeholderTextColor}
+                  />
+                }
+              />
             )}
           />
+          <Text>{errors.user?.message}</Text>
 
           <Controller
-            control={control}
             name="password"
             defaultValue=""
+            control={control}
             render={({ onChange, value }) => (
               <TextInput
                 label="Senha"
@@ -79,21 +96,21 @@ const StudentSignIn: React.FC = () => {
                 value={value}
                 onChangeText={onChange}
                 leftComponent={
-                  <FeatherIcon
+                  <Icon
                     size={20}
                     name="lock"
                     color={colors.placeholderTextColor}
                   />
                 }
                 customShowPasswordComponent={
-                  <FeatherIcon
+                  <Icon
                     size={20}
                     name="eye"
                     color={colors.placeholderTextColor}
                   />
                 }
                 customHidePasswordComponent={
-                  <FeatherIcon
+                  <Icon
                     size={20}
                     name="eye-off"
                     color={colors.placeholderTextColor}
@@ -102,6 +119,7 @@ const StudentSignIn: React.FC = () => {
               />
             )}
           />
+          <Text>{errors.password?.message}</Text>
 
           <S.ForgotPassword>
             <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
