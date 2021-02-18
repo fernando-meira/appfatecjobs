@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import * as yup from 'yup';
 import { SafeAreaView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, ControllerRenderProps } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -41,19 +41,105 @@ const StudentSignUp: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: IFormProps) => {
-    console.log('data', data);
+  const onSubmit = useCallback(
+    (data: IFormProps) => {
+      console.log('data', data);
 
-    navigation.navigate('CompletedStudentRegistration');
-  };
+      navigation.navigate('CompletedStudentRegistration');
+    },
+    [navigation],
+  );
+
+  const fieldNames = useMemo(
+    () => ['name', 'user', 'email', 'password', 'passwordConfirmation'],
+    [],
+  );
 
   useEffect(() => {
-    register({ name: 'name' });
-    register({ name: 'user' });
-    register({ name: 'email' });
-    register({ name: 'password' });
-    register({ name: 'passwordConfirmation' });
-  }, [register]);
+    fieldNames.map(fieldName => register({ name: fieldName }));
+  }, [fieldNames, register]);
+
+  const renderField = useMemo(
+    () => ({
+      name: ({ value, onChange }: ControllerRenderProps) => (
+        <TextInput
+          label="Nome"
+          value={value}
+          leftIconName="user"
+          errors={errors.name?.message}
+          onChangeText={onChange}
+        />
+      ),
+      ra: ({ value, onChange }: ControllerRenderProps) => (
+        <TextInput
+          label="R.A."
+          value={value}
+          maxLength={13}
+          leftIconName="user"
+          autoCorrect={false}
+          returnKeyType="next"
+          keyboardType="numeric"
+          onChangeText={onChange}
+          errors={errors.user?.message}
+        />
+      ),
+      email: ({ onChange, value }: ControllerRenderProps) => (
+        <TextInput
+          label="E-mail"
+          value={value}
+          leftIconName="mail"
+          autoCorrect={false}
+          returnKeyType="next"
+          onChangeText={onChange}
+          errors={errors.email?.message}
+        />
+      ),
+      password: ({ onChange, value }: ControllerRenderProps) => (
+        <TextInput
+          label="Senha"
+          isPassword
+          value={value}
+          leftIconName="lock"
+          returnKeyType="next"
+          onChangeText={onChange}
+          errors={errors.password?.message}
+          customShowPasswordComponent={
+            <Icon size={20} name="eye" color={colors.placeholderTextColor} />
+          }
+          customHidePasswordComponent={
+            <Icon
+              size={20}
+              name="eye-off"
+              color={colors.placeholderTextColor}
+            />
+          }
+        />
+      ),
+      passwordConfirmation: ({ onChange, value }: ControllerRenderProps) => (
+        <TextInput
+          label="Confirmar senha"
+          isPassword
+          value={value}
+          leftIconName="lock"
+          returnKeyType="send"
+          onChangeText={onChange}
+          errors={errors.passwordConfirmation?.message}
+          onSubmitEditing={handleSubmit(onSubmit)}
+          customShowPasswordComponent={
+            <Icon size={20} name="eye" color={colors.placeholderTextColor} />
+          }
+          customHidePasswordComponent={
+            <Icon
+              size={20}
+              name="eye-off"
+              color={colors.placeholderTextColor}
+            />
+          }
+        />
+      ),
+    }),
+    [errors, handleSubmit, onSubmit],
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -80,114 +166,35 @@ const StudentSignUp: React.FC = () => {
               name="name"
               defaultValue=""
               control={control}
-              render={({ onChange, value }) => (
-                <TextInput
-                  label="Nome"
-                  value={value}
-                  leftIconName="user"
-                  errors={errors.name?.message}
-                  onChangeText={onChange}
-                />
-              )}
+              render={renderField.name}
             />
 
             <Controller
               name="user"
               defaultValue=""
               control={control}
-              render={({ onChange, value }) => (
-                <TextInput
-                  label="R.A."
-                  value={value}
-                  maxLength={13}
-                  leftIconName="user"
-                  autoCorrect={false}
-                  returnKeyType="next"
-                  keyboardType="numeric"
-                  onChangeText={onChange}
-                  errors={errors.user?.message}
-                />
-              )}
+              render={renderField.ra}
             />
 
             <Controller
               name="email"
               defaultValue=""
               control={control}
-              render={({ onChange, value }) => (
-                <TextInput
-                  label="E-mail"
-                  value={value}
-                  leftIconName="mail"
-                  autoCorrect={false}
-                  returnKeyType="next"
-                  onChangeText={onChange}
-                  errors={errors.email?.message}
-                />
-              )}
+              render={renderField.email}
             />
 
             <Controller
               name="password"
               defaultValue=""
               control={control}
-              render={({ onChange, value }) => (
-                <TextInput
-                  label="Senha"
-                  isPassword
-                  value={value}
-                  leftIconName="lock"
-                  returnKeyType="next"
-                  onChangeText={onChange}
-                  errors={errors.password?.message}
-                  customShowPasswordComponent={
-                    <Icon
-                      size={20}
-                      name="eye"
-                      color={colors.placeholderTextColor}
-                    />
-                  }
-                  customHidePasswordComponent={
-                    <Icon
-                      size={20}
-                      name="eye-off"
-                      color={colors.placeholderTextColor}
-                    />
-                  }
-                />
-              )}
+              render={renderField.password}
             />
 
             <Controller
               name="passwordConfirmation"
               defaultValue=""
               control={control}
-              render={({ onChange, value }) => (
-                <TextInput
-                  label="Confirmar senha"
-                  isPassword
-                  value={value}
-                  leftIconName="lock"
-                  returnKeyType="send"
-                  onChangeText={onChange}
-                  errors={errors.passwordConfirmation?.message}
-                  onSubmitEditing={handleSubmit(onSubmit)}
-                  customShowPasswordComponent={
-                    <Icon
-                      size={20}
-                      name="eye"
-                      color={colors.placeholderTextColor}
-                    />
-                  }
-                  customHidePasswordComponent={
-                    <Icon
-                      size={20}
-                      name="eye-off"
-                      color={colors.placeholderTextColor}
-                    />
-                  }
-                />
-              )}
+              render={renderField.passwordConfirmation}
             />
           </S.TopContent>
 

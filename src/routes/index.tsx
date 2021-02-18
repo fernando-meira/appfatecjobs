@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import {
   Welcome,
@@ -16,7 +17,7 @@ import {
 
 const Auth = createStackNavigator();
 
-const AuthRoutes: React.FC = () => {
+const AuthRoutesStack: React.FC = () => {
   return (
     <Auth.Navigator
       screenOptions={{
@@ -50,6 +51,28 @@ const AuthRoutes: React.FC = () => {
         component={PasswordRecoveryConfirmation}
       />
     </Auth.Navigator>
+  );
+};
+
+const AuthConfigStack: React.FC = () => {
+  return (
+    <Auth.Navigator>
+      <Auth.Screen
+        name="PasswordRecoveryConfirmation"
+        component={PasswordRecoveryConfirmation}
+      />
+    </Auth.Navigator>
+  );
+};
+
+const Tab = createBottomTabNavigator();
+
+const AuthRoutes: React.FC = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={AuthRoutesStack} />
+      <Tab.Screen name="Config" component={AuthConfigStack} />
+    </Tab.Navigator>
   );
 };
 
