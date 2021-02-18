@@ -1,25 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import * as yup from 'yup';
 import { SafeAreaView, View } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
-import { DefaultButton, Input, TextInput } from '~/components';
+import { DefaultButton, TextInput } from '~/components';
 import Logo from '~/themes/assets/svg/small-logo.svg';
 
 import * as S from './styles';
 
+interface IFormProps {
+  name: string;
+  user: number;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+const schema = yup.object().shape({
+  name: yup.string().required('Nome obrigatório.'),
+  user: yup.number().required('R.A. obrigatório.'),
+  email: yup
+    .string()
+    .required('E-mail obrigatótio.')
+    .email('Digite um e-mail válido.'),
+  password: yup.string().required('Senha obrigatória.'),
+  passwordConfirmation: yup
+    .string()
+    .required('Confirmação de senha obrigatória.')
+    .oneOf([yup.ref('password'), null], 'As senhas devem corresponder.'),
+});
+
 const StudentSignUp: React.FC = () => {
   const navigation = useNavigation();
+  const { errors, handleSubmit, register, control } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const [name, setName] = useState('');
-  const [user, setUser] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmationPassword, setConfirmationPassword] = useState('');
+  const onSubmit = (data: IFormProps) => {
+    console.log('data', data);
 
-  console.log([name, user, email, password, confirmationPassword]);
+    navigation.navigate('CompletedStudentRegistration');
+  };
+
+  useEffect(() => {
+    register({ name: 'name' });
+    register({ name: 'user' });
+    register({ name: 'email' });
+    register({ name: 'password' });
+    register({ name: 'passwordConfirmation' });
+  }, [register]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -28,7 +62,7 @@ const StudentSignUp: React.FC = () => {
           <S.TopContent>
             <S.HeaderWrapper>
               <S.BackButton onPress={() => navigation.goBack()}>
-                <FeatherIcon
+                <Icon
                   size={24}
                   name="corner-up-left"
                   color={colors.primaryColor}
@@ -42,101 +76,116 @@ const StudentSignUp: React.FC = () => {
               <S.Title>Crie a conta estudantil.</S.Title>
             </View>
 
-            <TextInput
-              label="Nome"
+            <Controller
               name="name"
-              value={name}
-              leftComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="user"
-                  color={colors.primaryColor}
-                />
-              )}
-              onChangeText={value => setName(value)}
-            />
-
-            <TextInput
-              label="R.A."
-              name="name"
-              value={user}
-              maxLength={13}
-              keyboardType="numeric"
-              leftComponent={
-                <FeatherIcon size={20} name="key" color={colors.primaryColor} />
-              }
-              onChangeText={value => setUser(value)}
-            />
-
-            <TextInput
-              value={email}
-              name="name"
-              label="E-mail"
-              keyboardType="email-address"
-              leftComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="mail"
-                  color={colors.primaryColor}
-                />
-              )}
-              onChangeText={value => setEmail(value)}
-            />
-
-            <TextInput
-              isPassword
-              name="name"
-              label="Senha"
-              value={password}
-              onChangeText={value => setPassword(value)}
-              leftComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="lock"
-                  color={colors.primaryColor}
-                />
-              )}
-              customShowPasswordComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="eye"
-                  color={colors.placeholderTextColor}
-                />
-              )}
-              customHidePasswordComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="eye-off"
-                  color={colors.placeholderTextColor}
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="Nome"
+                  value={value}
+                  leftIconName="user"
+                  errors={errors.name?.message}
+                  onChangeText={onChange}
                 />
               )}
             />
 
-            <TextInput
-              isPassword
-              name="name"
-              label="Confirmar senha"
-              value={confirmationPassword}
-              onChangeText={value => setConfirmationPassword(value)}
-              leftComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="lock"
-                  color={colors.primaryColor}
+            <Controller
+              name="user"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="R.A."
+                  value={value}
+                  maxLength={13}
+                  leftIconName="user"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  keyboardType="numeric"
+                  onChangeText={onChange}
+                  errors={errors.user?.message}
                 />
               )}
-              customShowPasswordComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="eye"
-                  color={colors.placeholderTextColor}
+            />
+
+            <Controller
+              name="email"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="E-mail"
+                  value={value}
+                  leftIconName="mail"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  onChangeText={onChange}
+                  errors={errors.email?.message}
                 />
               )}
-              customHidePasswordComponent={(
-                <FeatherIcon
-                  size={20}
-                  name="eye-off"
-                  color={colors.placeholderTextColor}
+            />
+
+            <Controller
+              name="password"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="Senha"
+                  isPassword
+                  value={value}
+                  leftIconName="lock"
+                  returnKeyType="next"
+                  onChangeText={onChange}
+                  errors={errors.password?.message}
+                  customShowPasswordComponent={
+                    <Icon
+                      size={20}
+                      name="eye"
+                      color={colors.placeholderTextColor}
+                    />
+                  }
+                  customHidePasswordComponent={
+                    <Icon
+                      size={20}
+                      name="eye-off"
+                      color={colors.placeholderTextColor}
+                    />
+                  }
+                />
+              )}
+            />
+
+            <Controller
+              name="passwordConfirmation"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="Confirmar senha"
+                  isPassword
+                  value={value}
+                  leftIconName="lock"
+                  returnKeyType="send"
+                  onChangeText={onChange}
+                  errors={errors.passwordConfirmation?.message}
+                  onSubmitEditing={handleSubmit(onSubmit)}
+                  customShowPasswordComponent={
+                    <Icon
+                      size={20}
+                      name="eye"
+                      color={colors.placeholderTextColor}
+                    />
+                  }
+                  customHidePasswordComponent={
+                    <Icon
+                      size={20}
+                      name="eye-off"
+                      color={colors.placeholderTextColor}
+                    />
+                  }
                 />
               )}
             />
@@ -144,7 +193,7 @@ const StudentSignUp: React.FC = () => {
 
           <DefaultButton
             style={{ alignSelf: 'center', marginBottom: 20 }}
-            onPress={() => navigation.navigate('CompletedStudentRegistration')}
+            onPress={handleSubmit(onSubmit)}
           >
             <S.TextButton>Cadastrar</S.TextButton>
           </DefaultButton>
