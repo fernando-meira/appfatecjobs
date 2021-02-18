@@ -7,11 +7,10 @@ import {
   StudentSignUp,
   CompanySignIn,
   SelectionProfileType,
+  StudentForgotPassword,
   CompletedStudentRegistration,
   CompletedCompanyRegistration,
 } from '~/pages';
-
-import Teste from '~/pages/Teste';
 
 const Auth = createStackNavigator();
 
@@ -25,7 +24,10 @@ const AuthRoutes: React.FC = () => {
       initialRouteName="Welcome"
     >
       <Auth.Screen name="Welcome" component={Welcome} />
-      <Auth.Screen name="Teste" component={Teste} />
+      <Auth.Screen
+        name="StudentForgotPassword"
+        component={StudentForgotPassword}
+      />
       <Auth.Screen
         name="SelectionProfileType"
         component={SelectionProfileType}

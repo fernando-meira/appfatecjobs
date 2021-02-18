@@ -16,10 +16,6 @@ interface ITextInputProps {
   errors?: boolean;
 }
 
-export const Container = styled.View`
-  min-height: 60px;
-`;
-
 export const Wrapper = styled.View<IWrapperProps>`
   border-width: 2px;
   margin-bottom: ${wh(1)}px;

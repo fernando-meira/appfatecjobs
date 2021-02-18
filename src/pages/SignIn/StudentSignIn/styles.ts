@@ -49,8 +49,6 @@ export const SubTitle = styled.Text`
   font-family: 'Poppins-Regular';
 `;
 
-export const InputWrapper = styled.View``;
-
 export const ForgotPassword = styled.TouchableOpacity``;
 
 export const ForgotPasswordText = styled.Text`

@@ -138,7 +138,9 @@ const StudentSignIn: React.FC = () => {
             />
 
             {!showKeyboard && (
-              <S.ForgotPassword>
+              <S.ForgotPassword
+                onPress={() => navigation.navigate('StudentForgotPassword')}
+              >
                 <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
               </S.ForgotPassword>
             )}
