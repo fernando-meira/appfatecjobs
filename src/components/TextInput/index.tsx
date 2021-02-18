@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   FloatingLabelInput,
   FloatingLabelProps,
 } from 'react-native-floating-label-input';
 import Icon from 'react-native-vector-icons/Feather';
-import colors from '~/themes/colors';
 
 import * as S from './styles';
+import colors from '~/themes/colors';
 
 interface ITextInputProps extends FloatingLabelProps {
   errors?: string;
@@ -48,6 +48,8 @@ const TextInput: React.FC<ITextInputProps> = ({
         }
         {...rest}
       />
+
+      <S.ErrorText>{errors}</S.ErrorText>
     </S.Wrapper>
   );
 };

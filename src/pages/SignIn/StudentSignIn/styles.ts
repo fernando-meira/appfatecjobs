@@ -12,16 +12,16 @@ interface ICreateAccountTextProps {
   marginRight?: boolean;
 }
 
-export const Container = styled.KeyboardAvoidingView.attrs(() => ({
-  behavior: Platform.OS === 'ios' ? 'padding' : 'height',
-}))`
-  padding: ${wh(4)}px ${ww(11)}px;
+export const Container = styled.View`
+  padding-bottom: ${wh(4)}px;
 
   flex: 1;
   align-items: center;
 `;
 
 export const TopContent = styled.View`
+  padding: ${wh(4)}px ${ww(11)}px;
+
   flex: 1;
 `;
 

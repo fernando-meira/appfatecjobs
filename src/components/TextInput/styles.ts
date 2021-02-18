@@ -16,6 +16,10 @@ interface ITextInputProps {
   errors?: boolean;
 }
 
+export const Container = styled.View`
+  min-height: 60px;
+`;
+
 export const Wrapper = styled.View<IWrapperProps>`
   border-width: 2px;
   margin-bottom: ${wh(1)}px;
@@ -42,6 +46,9 @@ export const TextInput = styled.TextInput<ITextInputProps>`
 `;
 
 export const ErrorText = styled.Text`
+  position: absolute;
+  right: 8px;
+
   color: ${colors.red};
   font-size: ${ww(3)}px;
   font-family: 'Poppins-Regular';

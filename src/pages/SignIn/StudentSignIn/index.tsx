@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import { Alert, SafeAreaView, Keyboard } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
 import Logo from '~/themes/assets/svg/small-logo.svg';
@@ -18,8 +19,11 @@ interface IFormProps {
 }
 
 const schema = yup.object().shape({
-  user: yup.number().required(),
-  password: yup.string().required(),
+  user: yup.number().required('R.A. obrigatório.'),
+  password: yup
+    .string()
+    .required('Senha obrigatória.')
+    .min(6, 'Minímo seis caracteres.'),
 });
 
 const StudentSignIn: React.FC = () => {
@@ -62,82 +66,84 @@ const StudentSignIn: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <S.Container>
-        <S.TopContent>
-          <S.HeaderWrapper>
-            <S.BackButton onPress={() => navigation.goBack()}>
-              <Icon
-                size={24}
-                name="corner-up-left"
-                color={colors.primaryColor}
-              />
-            </S.BackButton>
+        <KeyboardAwareScrollView>
+          <S.TopContent>
+            <S.HeaderWrapper>
+              <S.BackButton onPress={() => navigation.goBack()}>
+                <Icon
+                  size={24}
+                  name="corner-up-left"
+                  color={colors.primaryColor}
+                />
+              </S.BackButton>
 
-            <Logo />
-          </S.HeaderWrapper>
+              <Logo />
+            </S.HeaderWrapper>
 
-          <S.TextTopWrapper>
-            <S.Title>Vamos fazer seu login.</S.Title>
+            <S.TextTopWrapper>
+              <S.Title>Vamos fazer seu login.</S.Title>
 
-            <S.SubTitle>Bem-vindo de volta!</S.SubTitle>
-          </S.TextTopWrapper>
+              <S.SubTitle>Bem-vindo de volta!</S.SubTitle>
+            </S.TextTopWrapper>
 
-          <Controller
-            name="user"
-            defaultValue=""
-            control={control}
-            render={({ onChange, value }) => (
-              <TextInput
-                label="R.A."
-                value={value}
-                maxLength={13}
-                leftIconName="user"
-                autoCorrect={false}
-                returnKeyType="next"
-                keyboardType="numeric"
-                onChangeText={onChange}
-                errors={errors.user?.message}
-              />
+            <Controller
+              name="user"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="R.A."
+                  value={value}
+                  maxLength={13}
+                  leftIconName="user"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  keyboardType="numeric"
+                  onChangeText={onChange}
+                  errors={errors.user?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="password"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="Senha"
+                  isPassword
+                  value={value}
+                  leftIconName="lock"
+                  returnKeyType="send"
+                  onChangeText={onChange}
+                  errors={errors.password?.message}
+                  onSubmitEditing={handleSubmit(onSubmit)}
+                  customShowPasswordComponent={
+                    <Icon
+                      size={20}
+                      name="eye"
+                      color={colors.placeholderTextColor}
+                    />
+                  }
+                  customHidePasswordComponent={
+                    <Icon
+                      size={20}
+                      name="eye-off"
+                      color={colors.placeholderTextColor}
+                    />
+                  }
+                />
+              )}
+            />
+
+            {!showKeyboard && (
+              <S.ForgotPassword>
+                <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
+              </S.ForgotPassword>
             )}
-          />
-
-          <Controller
-            name="password"
-            defaultValue=""
-            control={control}
-            render={({ onChange, value }) => (
-              <TextInput
-                label="Senha"
-                isPassword
-                value={value}
-                leftIconName="lock"
-                returnKeyType="send"
-                onChangeText={onChange}
-                errors={errors.password?.message}
-                onSubmitEditing={handleSubmit(onSubmit)}
-                customShowPasswordComponent={
-                  <Icon
-                    size={20}
-                    name="eye"
-                    color={colors.placeholderTextColor}
-                  />
-                }
-                customHidePasswordComponent={
-                  <Icon
-                    size={20}
-                    name="eye-off"
-                    color={colors.placeholderTextColor}
-                  />
-                }
-              />
-            )}
-          />
-
-          {!showKeyboard && (
-            <S.ForgotPassword>
-              <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
-            </S.ForgotPassword>
-          )}
-        </S.TopContent>
+          </S.TopContent>
+        </KeyboardAwareScrollView>
 
         {!showKeyboard && (
           <S.CreateAccount onPress={() => navigation.navigate('StudentSignUp')}>
