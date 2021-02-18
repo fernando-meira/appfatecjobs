@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import {
   Welcome,
+  Profile,
   StudentSignIn,
   StudentSignUp,
   CompanySignIn,
@@ -22,9 +23,10 @@ const AuthRoutes: React.FC = () => {
         headerShown: false,
         cardStyle: { backgroundColor: '#f7f9f9' },
       }}
-      initialRouteName="Welcome"
+      initialRouteName="Profile"
     >
       <Auth.Screen name="Welcome" component={Welcome} />
+      <Auth.Screen name="Profile" component={Profile} />
       <Auth.Screen
         name="StudentForgotPassword"
         component={StudentForgotPassword}

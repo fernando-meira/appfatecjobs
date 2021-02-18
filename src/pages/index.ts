@@ -1,4 +1,5 @@
 import Welcome from './Welcome';
+import Profile from './Profile';
 import StudentSignIn from './SignIn/StudentSignIn';
 import StudentSignUp from './SignUp/StudentSignUp';
 import CompanySignIn from './SignIn/CompanySignIn';
@@ -10,6 +11,7 @@ import PasswordRecoveryConfirmation from './ForgotPassword/StudentForgotPassword
 
 export {
   Welcome,
+  Profile,
   StudentSignIn,
   StudentSignUp,
   CompanySignIn,

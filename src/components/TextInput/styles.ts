@@ -23,6 +23,7 @@ export const Wrapper = styled.View<IWrapperProps>`
 
   border-color: ${({ isErrored }) =>
     isErrored ? colors.red : colors.placeholderTextColor};
+  background: ${colors.white};
 
   ${props =>
     (props.isFocused || props.isFilled) &&
