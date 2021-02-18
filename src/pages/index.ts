@@ -6,6 +6,7 @@ import SelectionProfileType from './SelectionProfileType';
 import StudentForgotPassword from './ForgotPassword/StudentForgotPassword';
 import CompletedStudentRegistration from './SignUp/screens/CompletedStudentRegistration';
 import CompletedCompanyRegistration from './SignIn/CompanySignIn/pages/CompletedCompanyRegistration';
+import PasswordRecoveryConfirmation from './ForgotPassword/StudentForgotPassword/screens/PasswordRecoveryConfirmation';
 
 export {
   Welcome,
@@ -16,4 +17,5 @@ export {
   StudentForgotPassword,
   CompletedStudentRegistration,
   CompletedCompanyRegistration,
+  PasswordRecoveryConfirmation,
 };

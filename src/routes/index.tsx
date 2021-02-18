@@ -10,6 +10,7 @@ import {
   StudentForgotPassword,
   CompletedStudentRegistration,
   CompletedCompanyRegistration,
+  PasswordRecoveryConfirmation,
 } from '~/pages';
 
 const Auth = createStackNavigator();
@@ -42,6 +43,10 @@ const AuthRoutes: React.FC = () => {
       <Auth.Screen
         name="CompletedCompanyRegistration"
         component={CompletedCompanyRegistration}
+      />
+      <Auth.Screen
+        name="PasswordRecoveryConfirmation"
+        component={PasswordRecoveryConfirmation}
       />
     </Auth.Navigator>
   );

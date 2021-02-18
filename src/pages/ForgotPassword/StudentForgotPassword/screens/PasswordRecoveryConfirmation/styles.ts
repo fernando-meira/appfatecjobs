@@ -8,6 +8,7 @@ import colors from '~/themes/colors';
 
 export const Container = styled.View`
   padding: ${wh(4)}px;
+
   flex: 1;
 
   align-items: center;

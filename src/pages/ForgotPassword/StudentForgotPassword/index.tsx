@@ -26,7 +26,7 @@ const StudentForgotPassword: React.FC = () => {
   const onSubmit = useCallback(data => {
     console.log('formData', data);
 
-    Alert.alert('Emial de recuperação enviado');
+    navigation.navigate('PasswordRecoveryConfirmation');
   }, []);
 
   useEffect(() => {
