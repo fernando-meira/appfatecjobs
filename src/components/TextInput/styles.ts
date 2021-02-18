@@ -1,17 +1,48 @@
-import styled from 'styled-components/native';
-import { heightPercentageToDP as wh } from 'react-native-responsive-screen';
+import styled, { css } from 'styled-components/native';
+import {
+  heightPercentageToDP as wh,
+  widthPercentageToDP as ww,
+} from 'react-native-responsive-screen';
 import { Platform } from 'react-native';
 
 import colors from '~/themes/colors';
 
-export const Wrapper = styled.View`
+interface IWrapperProps {
+  isFilled: boolean;
+  isFocused: boolean;
+  isErrored: boolean;
+}
+interface ITextInputProps {
+  errors?: boolean;
+}
+
+export const Wrapper = styled.View<IWrapperProps>`
+  border-width: 2px;
   margin-bottom: ${wh(1)}px;
+  border-radius: ${ww(2)}px;
+
+  border-color: ${({ isErrored }) =>
+    isErrored ? colors.red : colors.placeholderTextColor};
+
+  ${props =>
+    (props.isFocused || props.isFilled) &&
+    css`
+      border-color: ${colors.primaryColor};
+    `}
 `;
 
-export const TextInput = styled.TextInput`
-  flex: 1;
+export const TextInput = styled.TextInput<ITextInputProps>`
   margin-top: ${Platform.OS === 'android' ? 8 : 0}px;
-  font-size: 16px;
-  font-family: 'Poppins-Regular';
+
+  flex: 1;
+
+  font-size: ${ww(4)}px;
   color: ${colors.primaryColor};
+  font-family: 'Poppins-Regular';
+`;
+
+export const ErrorText = styled.Text`
+  color: ${colors.red};
+  font-size: ${ww(3)}px;
+  font-family: 'Poppins-Regular';
 `;

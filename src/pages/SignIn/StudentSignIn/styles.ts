@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { Platform } from 'react-native';
 import {
   widthPercentageToDP as ww,
   heightPercentageToDP as wh,
@@ -11,7 +12,9 @@ interface ICreateAccountTextProps {
   marginRight?: boolean;
 }
 
-export const Container = styled.View`
+export const Container = styled.KeyboardAvoidingView.attrs(() => ({
+  behavior: Platform.OS === 'ios' ? 'padding' : 'height',
+}))`
   padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;

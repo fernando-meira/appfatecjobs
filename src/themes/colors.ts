@@ -7,5 +7,6 @@ export default {
 
   placeholderTextColor: '#778485',
 
+  red: '#802534',
   white: '#ffffff',
 };

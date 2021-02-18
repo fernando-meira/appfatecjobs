@@ -4,12 +4,9 @@ import colors from './colors';
 
 setGlobalStyles.containerStyles = {
   height: 50,
-  borderWidth: 1,
   borderRadius: 8,
   paddingLeft: 8,
   paddingRight: 8,
-  backgroundColor: colors.white,
-  borderColor: colors.placeholderTextColor,
 };
 
 setGlobalStyles.customLabelStyles = {
