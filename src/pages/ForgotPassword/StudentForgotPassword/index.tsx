@@ -75,9 +75,7 @@ const StudentForgotPassword: React.FC = () => {
           />
         </S.Form>
 
-        <DefaultButton onPress={handleSubmit(onSubmit)}>
-          <S.TextButton>Recuperar</S.TextButton>
-        </DefaultButton>
+        <DefaultButton onPress={handleSubmit(onSubmit)} text="recuperar" />
       </S.Container>
     </SafeAreaView>
   );

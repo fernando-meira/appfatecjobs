@@ -192,11 +192,10 @@ const StudentSignUp: React.FC = () => {
           </S.TopContent>
 
           <DefaultButton
+            text="Cadastras"
             style={{ alignSelf: 'center', marginBottom: 20 }}
             onPress={handleSubmit(onSubmit)}
-          >
-            <S.TextButton>Cadastrar</S.TextButton>
-          </DefaultButton>
+          />
         </S.Container>
       </KeyboardAwareScrollView>
     </SafeAreaView>

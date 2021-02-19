@@ -30,9 +30,8 @@ const Welcome: React.FC = () => {
 
         <DefaultButton
           onPress={() => navigation.navigate('SelectionProfileType')}
-        >
-          <S.StartButtonText>Começar</S.StartButtonText>
-        </DefaultButton>
+          text="Começar"
+        />
       </S.Container>
     </SafeAreaView>
   );

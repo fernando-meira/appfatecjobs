@@ -3,7 +3,10 @@ import * as yup from 'yup';
 import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
-import { useNavigation } from '@react-navigation/native';
+import {
+  NavigationHelpersContext,
+  useNavigation,
+} from '@react-navigation/native';
 import { Alert, SafeAreaView, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -37,7 +40,7 @@ const StudentSignIn: React.FC = () => {
   const onSubmit = (data: IFormProps) => {
     console.log('data', data);
 
-    Alert.alert('Login efetuado', 'Redirecionar usuário para a home. ');
+    navigation.navigate('Profile');
   };
 
   useEffect(() => {
@@ -159,9 +162,7 @@ const StudentSignIn: React.FC = () => {
           </S.CreateAccount>
         )}
 
-        <DefaultButton onPress={handleSubmit(onSubmit)}>
-          <S.TextButton>Entrar</S.TextButton>
-        </DefaultButton>
+        <DefaultButton onPress={handleSubmit(onSubmit)} text="Entrar" />
       </S.Container>
     </SafeAreaView>
   );

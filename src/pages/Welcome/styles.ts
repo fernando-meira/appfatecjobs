@@ -34,10 +34,3 @@ export const Description = styled.Text`
   color: ${colors.primaryColor};
   font-family: 'Poppins-Regular';
 `;
-
-export const StartButtonText = styled.Text`
-  text-align: center;
-  font-size: ${ww(4.4)}px;
-  color: ${colors.secondaryColor};
-  font-family: 'Poppins-SemiBold';
-`;

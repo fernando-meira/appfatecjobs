@@ -78,10 +78,3 @@ export const CreateAccountText = styled.Text<ICreateAccountTextProps>`
       margin-right: 4px;
     `}
 `;
-
-export const TextButton = styled.Text`
-  text-align: center;
-  font-size: ${ww(4.4)}px;
-  color: ${colors.secondaryColor};
-  font-family: 'Poppins-SemiBold';
-`;

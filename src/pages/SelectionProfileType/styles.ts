@@ -52,9 +52,9 @@ export const ButtonsWrapper = styled.View`
 export const Button = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 1,
 })) <IButtonProps>`
-  width: ${ww(44.4)}px;
   height: 50px;
   border-radius: 8px;
+  width: ${ww(44.4)}px;
 
   align-items: center;
   justify-content: center;

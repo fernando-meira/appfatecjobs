@@ -37,10 +37,3 @@ export const Title = styled.Text`
 `;
 
 export const InputWrapper = styled.View``;
-
-export const TextButton = styled.Text`
-  text-align: center;
-  font-size: ${ww(4.4)}px;
-  color: ${colors.secondaryColor};
-  font-family: 'Poppins-SemiBold';
-`;
