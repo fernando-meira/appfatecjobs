@@ -192,7 +192,7 @@ const StudentSignUp: React.FC = () => {
           </S.TopContent>
 
           <DefaultButton
-            text="Cadastras"
+            text="Cadastrar"
             style={{ alignSelf: 'center', marginBottom: 20 }}
             onPress={handleSubmit(onSubmit)}
           />

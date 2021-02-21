@@ -14,6 +14,8 @@ import {
   PasswordRecoveryConfirmation,
 } from '~/pages';
 
+import Count from '~/pages/Count';
+
 const Auth = createStackNavigator();
 
 const AuthRoutes: React.FC = () => {
@@ -23,9 +25,10 @@ const AuthRoutes: React.FC = () => {
         headerShown: false,
         cardStyle: { backgroundColor: '#f7f9f9' },
       }}
-      initialRouteName="Welcome"
+      initialRouteName="Count"
     >
       <Auth.Screen name="Welcome" component={Welcome} />
+      <Auth.Screen name="Count" component={Count} />
       <Auth.Screen name="Profile" component={Profile} />
       <Auth.Screen
         name="StudentForgotPassword"
