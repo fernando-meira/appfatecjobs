@@ -9,13 +9,13 @@ import * as S from './styles';
 import colors from '~/themes/colors';
 
 interface ITextInputProps extends FloatingLabelProps {
-  errors?: string;
-  leftIconName?: string;
+  errors: string;
+  leftIconName: string;
 }
 
 const TextInput: React.FC<ITextInputProps> = ({
-  leftIconName,
-  errors,
+  leftIconName = 'help-circle',
+  errors = '',
   ...rest
 }) => {
   const [isFilled, setIsFilled] = useState(false);
@@ -38,7 +38,7 @@ const TextInput: React.FC<ITextInputProps> = ({
         leftComponent={
           <Icon
             size={20}
-            name={leftIconName || 'help-circle'}
+            name={leftIconName}
             color={
               isFocused || isFilled
                 ? colors.primaryColor
