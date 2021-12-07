@@ -36,13 +36,14 @@
     "react-native-gesture-handler": "^1.8.0",
     "react-native-iphone-x-helper": "^1.2.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
-    "react-native-reanimated": "1.13.0",
+    "react-native-reanimated": "^2.2.4",
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^3.1.7",
     "react-native-screens": "^2.10.1",
     "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^7.1.0",
     "styled-components": "^5.2.0",
+    "v2": "^0.0.3",
     "yup": "^0.32.8"
   },
   "devDependencies": {
