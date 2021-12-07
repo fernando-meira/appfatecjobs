@@ -29,7 +29,7 @@ const Welcome: React.FC = () => {
         <S.StrongText>Plataforma colaborativa.</S.StrongText>
 
         <S.Description>
-          Escolha seu tipo de usuário para logar ou registrar-se no sistema.
+          Clique no botão abaixo para fazer login ou cadastrar-se na plataforma.
         </S.Description>
 
         <S.ButtonsWrapper>

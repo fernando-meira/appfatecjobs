@@ -25,11 +25,12 @@ const Welcome: React.FC = () => {
         <S.Schoolbooks />
 
         <S.Description>
-          Plataforma desenvolvida para você que busca uma vaga ou um candidato.
+          Plataforma desenvolvida para você que busca uma vaga em sua área de
+          estudo.
         </S.Description>
 
         <DefaultButton
-          onPress={() => navigation.navigate('SelectionProfileType')}
+          onPress={() => navigation.navigate('StudentSignIn')}
           text="Começar"
         />
       </S.Container>
