@@ -3,4 +3,4 @@ import ProfileImage from './ProfileImage';
 import DefaultButton from './DefaultButton';
 import ProfileHeader from './ProfileHeader';
 
-export { TextInput, DefaultButton, ProfileImage, ProfileHeader };
+export { TextInput, ProfileImage, ProfileHeader, DefaultButton };

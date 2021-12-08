@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import * as yup from 'yup';
-import { Alert, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
