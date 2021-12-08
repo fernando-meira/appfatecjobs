@@ -14,6 +14,19 @@ export const Container = styled.View`
 `;
 
 export const CarouselWrapper = styled.View`
+  position: relative;
+`;
+
+export const CarouselLabel = styled.Text`
+  top: 0;
+  left: 0;
+  position: absolute;
+
+  font-size: ${ww(3.5)}px;
+  font-family: 'Poppins-Regular';
+`;
+
+export const CarouselContent = styled.View`
   width: 100%;
   height: ${wh(52)}px;
   margin-top: ${wh(4)}px;
@@ -22,7 +35,6 @@ export const CarouselWrapper = styled.View`
 
   display: flex;
   align-items: center;
-  /* justify-content: space-around; */
 
   background-color: ${colors.secondaryColor};
 `;
@@ -81,7 +93,12 @@ export const SmallCarouselWrapper = styled.View`
   padding: ${ww(3)}px ${ww(4)}px;
 
   background-color: ${colors.secondaryColor};
-`; // TODO alterar esse carrossel para a estizização parecida com o de cima.
+`;
+
+export const SmallText = styled.Text`
+  font-size: ${ww(2)}px;
+  font-family: 'Poppins-Regular';
+`;
 
 export const Button = styled(DefaultButton)`
   margin-top: ${wh(4)}px;

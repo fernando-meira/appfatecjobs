@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
 
   const renderItems = ({ item }: { item: VacancyProps }) => {
     return (
-      <S.CarouselWrapper>
+      <S.CarouselContent>
         <S.CarouselTitle>{item.titulo}</S.CarouselTitle>
 
         <S.ContentRow>
@@ -117,13 +117,15 @@ const Dashboard: React.FC = () => {
           style={{ marginTop: 'auto' }}
           onPress={() => console.log('Candidatar-se')}
         />
-      </S.CarouselWrapper>
+      </S.CarouselContent>
     );
   };
 
   const renderSmallCarousel = ({ item }: { item: VacancyProps }) => {
     return (
       <S.SmallCarouselWrapper>
+        <S.SmallText>Minhas vagas</S.SmallText>
+
         <S.CarouselTitle>{item.titulo}</S.CarouselTitle>
 
         <S.ContentRow>
