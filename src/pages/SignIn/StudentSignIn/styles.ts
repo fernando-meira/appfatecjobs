@@ -1,83 +1,80 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+import { Platform } from 'react-native';
 import {
-  getBottomSpace,
-  getStatusBarHeight,
-} from 'react-native-iphone-x-helper';
+  widthPercentageToDP as ww,
+  heightPercentageToDP as wh,
+} from 'react-native-responsive-screen';
 
 import colors from '~/themes/colors';
 
-interface CreateAccontButtonProps {
-  borderColor: string;
-  backgroundColor: string;
-}
-
-interface CreateAccontButtonTextProps {
-  textColor: string;
+interface ICreateAccountTextProps {
+  fontFamily?: string;
+  marginRight?: boolean;
 }
 
 export const Container = styled.View`
-  margin-top: ${32 + getStatusBarHeight()}px;
+  padding-bottom: ${wh(4)}px;
+
+  flex: 1;
+  align-items: center;
+`;
+
+export const TopContent = styled.View`
+  padding: ${wh(4)}px ${ww(11)}px;
 
   flex: 1;
 `;
 
-export const ReturnButtonWrapper = styled.View`
-  top: 0;
-  left: 0;
-  z-index: 2;
-  position: absolute;
+export const HeaderWrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-export const ContentWrapper = styled.View`
-  padding: 0 40px;
-  margin-bottom: 80px;
+export const BackButton = styled.TouchableOpacity``;
 
-  flex: 1;
+export const TextTopWrapper = styled.View`
+  margin: ${wh(5)}px 0;
+`;
+
+export const Title = styled.Text`
+  font-size: ${ww(6.7)}px;
+  color: ${colors.primaryColor};
+  font-family: 'Poppins-SemiBold';
+`;
+
+export const SubTitle = styled.Text`
+  font-size: ${ww(5)}px;
+  color: ${colors.primaryColor};
+  font-family: 'Poppins-Regular';
+`;
+
+export const ForgotPassword = styled.TouchableOpacity``;
+
+export const ForgotPasswordText = styled.Text`
+  text-align: right;
+  font-size: ${ww(4)}px;
+  font-family: 'Poppins-Regular';
+  color: ${colors.placeholderTextColor};
+`;
+
+export const CreateAccount = styled.TouchableOpacity`
+  margin-bottom: ${wh(5.5)}px;
+
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
 
-export const Title = styled.Text`
-  margin: 12px 0;
+export const CreateAccountText = styled.Text<ICreateAccountTextProps>`
+  text-align: center;
+  font-size: ${ww(4)}px;
+  color: ${colors.primaryColor};
+  font-family: ${({ fontFamily }) => fontFamily || 'Poppins-Regular'};
 
-  font-size: 24px;
-  color: ${colors.textColor};
-  font-family: 'Poppins-Regular';
-`;
-
-export const ForgotPassword = styled.TouchableOpacity`
-  margin-top: 24px;
-`;
-
-export const ForgotPasswordText = styled.Text`
-  font-size: 16px;
-  color: ${colors.textColor};
-  font-family: 'Poppins-Regular';
-`;
-
-export const CreateAccontButton = styled.TouchableOpacity<CreateAccontButtonProps>`
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-
-  border-top-width: 1px;
-  padding: 16px 0 ${16 + getBottomSpace()}px;
-  border-color: ${({ borderColor }) => borderColor};
-
-  align-items: center;
-
-  background: ${({ backgroundColor }) => backgroundColor};
-`;
-
-export const CreateAccontButtonText = styled.Text<CreateAccontButtonTextProps>`
-  font-size: 18px;
-  font-family: 'Poppins-SemiBold';
-  color: ${({ textColor }) => textColor};
-`;
-
-export const CreateAccontModalButton = styled.TouchableOpacity`
-  flex: 1;
-
-  align-items: center;
+  ${({ marginRight }) =>
+    marginRight &&
+    css`
+      margin-right: 4px;
+    `}
 `;

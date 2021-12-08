@@ -1,12 +1,12 @@
 export default {
-  background: '#1D2433',
+  background: '#F7F9F9',
   darkBackground: '#171527',
 
-  primaryColor: '#34E3B8',
-  secondaryColor: '#E43F5A',
+  primaryColor: '#1D2433',
+  secondaryColor: '#F2F2F2',
 
-  textColor: '#F4EDE8',
-  inputColor: '#171527',
-  inputTextColor: '#EBEAEA',
-  placeholderTextColor: '#939392',
+  placeholderTextColor: '#778485',
+
+  red: '#802534',
+  white: '#ffffff',
 };

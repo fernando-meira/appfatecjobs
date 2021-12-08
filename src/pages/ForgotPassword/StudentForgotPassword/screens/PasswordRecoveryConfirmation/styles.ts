@@ -1,46 +1,58 @@
 import styled from 'styled-components/native';
+import {
+  widthPercentageToDP as ww,
+  heightPercentageToDP as wh,
+} from 'react-native-responsive-screen';
 
 import colors from '~/themes/colors';
 
 export const Container = styled.View`
+  padding: ${wh(4)}px;
+
   flex: 1;
 
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const TopContent = styled.View`
+  flex: 1;
   align-items: center;
   justify-content: center;
 `;
 
 export const TextWrapper = styled.View`
-  margin-top: 16px;
-  margin-bottom: 30px;
+  margin-top: ${wh(1.8)}px;
+  margin-bottom: ${wh(3)}px;
 
   align-items: center;
 `;
 
 export const MediumText = styled.Text`
-  color: #f4ede8;
-  font-size: 30px;
   text-align: center;
+  font-size: ${ww(7)}px;
+  color: ${colors.primaryColor};
   font-family: 'Poppins-Regular';
 `;
 
 export const SmallText = styled.Text`
-  color: #999591;
-  font-size: 14px;
+  font-size: ${ww(3.5)}px;
   font-family: 'Poppins-Regular';
+  color: ${colors.placeholderTextColor};
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  width: 100px;
   height: 50px;
+  width: ${ww(25)}px;
   border-radius: 10px;
 
   align-items: center;
   justify-content: center;
 
-  background-color: ${colors.secondaryColor};
+  background-color: ${colors.primaryColor};
 `;
 
 export const TextButton = styled.Text`
-  color: #ead4d8;
+  color: ${colors.secondaryColor};
   font-family: 'Poppins-SemiBold';
 `;

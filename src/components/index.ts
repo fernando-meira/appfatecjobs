@@ -1,6 +1,6 @@
-import Input from './Input';
-import Modal from './Modal';
-import Button from './Button';
-import SelectionButton from './SelectionButton';
+import TextInput from './TextInput';
+import ProfileImage from './ProfileImage';
+import DefaultButton from './DefaultButton';
+import ProfileHeader from './ProfileHeader';
 
-export { Input, Modal, Button, SelectionButton };
+export { TextInput, DefaultButton, ProfileImage, ProfileHeader };
