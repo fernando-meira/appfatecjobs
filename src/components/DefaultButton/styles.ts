@@ -13,7 +13,7 @@ interface ITextButtonProps {
 
 export const Wrapper = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.8,
-})) <IWrapperProps>`
+}))<IWrapperProps>`
   height: 50px;
   min-width: 184px;
   border-radius: 8px;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Carousel from 'react-native-snap-carousel';
 import {
   widthPercentageToDP as ww,
@@ -20,6 +21,8 @@ interface VacancyProps {
 }
 
 const Dashboard: React.FC = () => {
+  const navigation = useNavigation();
+
   const response: VacancyProps[] = [
     {
       id_vaga: 21,
@@ -166,7 +169,10 @@ const Dashboard: React.FC = () => {
         renderItem={renderSmallCarousel}
       />
 
-      <S.Button text="Ver perfil" />
+      <S.Button
+        text="Ver perfil"
+        onPress={() => navigation.navigate('Profile')}
+      />
     </S.Container>
   );
 };
