@@ -26,7 +26,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required('Senha obrigatória.')
-    .min(6, 'Minímo seis caracteres.'),
+    .min(6, 'Mínimo seis caracteres.'),
 });
 
 const StudentSignIn: React.FC = () => {
@@ -40,7 +40,7 @@ const StudentSignIn: React.FC = () => {
   const onSubmit = (data: IFormProps) => {
     console.log('data', data);
 
-    navigation.navigate('Profile');
+    navigation.navigate('Dashboard');
   };
 
   useEffect(() => {
