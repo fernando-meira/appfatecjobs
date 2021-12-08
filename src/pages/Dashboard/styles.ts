@@ -28,7 +28,7 @@ export const CarouselLabel = styled.Text`
 
 export const CarouselContent = styled.View`
   width: 100%;
-  height: ${wh(52)}px;
+  height: ${wh(50)}px;
   margin-top: ${wh(4)}px;
   border-radius: ${ww(4)}px;
   padding: ${ww(3)}px ${ww(4)}px;
@@ -87,7 +87,7 @@ export const SalaryText = styled.Text`
 
 export const SmallCarouselWrapper = styled.View`
   width: 100%;
-  height: ${wh(20)}px;
+  height: ${wh(18)}px;
   margin-top: ${wh(4)}px;
   border-radius: ${ww(4)}px;
   padding: ${ww(3)}px ${ww(4)}px;
