@@ -77,7 +77,7 @@ export const SmallCarouselWrapper = styled.View`
   width: 100%;
   height: ${wh(20)}px;
   margin-top: ${wh(4)}px;
-  border-radius: ${ww(10)}px;
+  border-radius: ${ww(4)}px;
   padding: ${ww(3)}px ${ww(4)}px;
 
   background-color: ${colors.secondaryColor};

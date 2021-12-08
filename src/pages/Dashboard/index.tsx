@@ -7,7 +7,6 @@ import {
 } from 'react-native-responsive-screen';
 
 import * as S from './styles';
-
 import { Header } from './components';
 
 interface VacancyProps {
@@ -122,11 +121,32 @@ const Dashboard: React.FC = () => {
     );
   };
 
+  const renderSmallCarousel = ({ item }: { item: VacancyProps }) => {
+    return (
+      <S.SmallCarouselWrapper>
+        <S.CarouselTitle>{item.titulo}</S.CarouselTitle>
+
+        <S.ContentRow>
+          <S.InfoWrapper>
+            <View>
+              <S.Label>Tipo da vaga: </S.Label>
+              <S.RegularText>{item.tipo}</S.RegularText>
+            </View>
+
+            <View>
+              <S.Label>Salário: </S.Label>
+              <S.SalaryText>{`R$ ${item.salario}`}</S.SalaryText>
+            </View>
+          </S.InfoWrapper>
+        </S.ContentRow>
+      </S.SmallCarouselWrapper>
+    );
+  };
+
   return (
     <S.Container>
       <Header />
 
-      {/* <S.CarouselWrapper> */}
       <Carousel
         ref={null}
         data={response}
@@ -134,17 +154,15 @@ const Dashboard: React.FC = () => {
         renderItem={renderItems}
         sliderWidth={ww('100%')}
       />
-      {/* </S.CarouselWrapper> */}
 
-      <S.SmallCarouselWrapper>
-        <Carousel
-          ref={null}
-          data={response}
-          itemWidth={wh('32')}
-          renderItem={renderItems}
-          sliderWidth={ww('100%')}
-        />
-      </S.SmallCarouselWrapper>
+      <Carousel
+        ref={null}
+        data={response}
+        layout="tinder"
+        itemWidth={wh('32')}
+        sliderWidth={ww('100%')}
+        renderItem={renderSmallCarousel}
+      />
 
       <S.Button text="Ver perfil" />
     </S.Container>
