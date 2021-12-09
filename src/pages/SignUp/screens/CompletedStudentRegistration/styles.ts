@@ -35,6 +35,7 @@ export const MediumText = styled.Text`
 `;
 
 export const SmallText = styled.Text`
+  text-align: center;
   font-size: ${ww(3.5)}px;
   font-family: 'Poppins-Regular';
   color: ${colors.placeholderTextColor};

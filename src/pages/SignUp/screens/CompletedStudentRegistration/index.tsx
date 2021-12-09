@@ -26,12 +26,14 @@ const CompletedStudentRegistration: React.FC = () => {
             {'\n'}
             concluído
           </S.MediumText>
-          <S.SmallText>Agora é só fazer o login</S.SmallText>
+          <S.SmallText>
+            Clique no botão Okay para ser redirecionado para a Home
+          </S.SmallText>
         </S.TextWrapper>
       </S.TopContent>
 
-      <S.BackButton onPress={() => navigation.navigate('StudentSignIn')}>
-        <S.TextButton>Ok</S.TextButton>
+      <S.BackButton onPress={() => navigation.navigate('Dashboard')}>
+        <S.TextButton>Okay</S.TextButton>
       </S.BackButton>
     </S.Container>
   );

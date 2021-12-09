@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import * as yup from 'yup';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
@@ -8,51 +8,94 @@ import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
-import { DefaultButton, TextInput } from '~/components';
+import { api } from '~/services/api';
+import { useAuth } from '~/hooks/auth';
 import Logo from '~/themes/assets/svg/small-logo.svg';
+import { DefaultButton, TextInput } from '~/components';
 
 import * as S from './styles';
+import { RegisterStudentResponse } from '~/interfaces/Register';
 
 interface IFormProps {
-  name: string;
-  user: number;
+  ra: number;
+  bio: string;
+  nome: string;
   email: string;
-  password: string;
-  passwordConfirmation: string;
+  senha: string;
+  telefone: string;
+  confirmPassword: string;
 }
 
 const schema = yup.object().shape({
-  name: yup.string().required('Nome obrigatório.'),
-  user: yup.number().required('R.A. obrigatório.'),
+  nome: yup.string().required('Nome obrigatório.'),
+  ra: yup.number().required('R.A. obrigatório.'),
   email: yup
     .string()
     .required('E-mail obrigatótio.')
     .email('Digite um e-mail válido.'),
-  password: yup.string().required('Senha obrigatória.'),
-  passwordConfirmation: yup
+  telefone: yup.string(),
+  bio: yup.string(),
+  senha: yup.string().required('Senha obrigatória.'),
+  confirmPassword: yup
     .string()
     .required('Confirmação de senha obrigatória.')
-    .oneOf([yup.ref('password'), null], 'As senhas devem corresponder.'),
+    .oneOf([yup.ref('senha'), null], 'As senhas devem corresponder.'),
 });
 
 const StudentSignUp: React.FC = () => {
+  const { setUser } = useAuth();
+
   const navigation = useNavigation();
   const { errors, handleSubmit, register, control } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: IFormProps) => {
-    console.log('data', data);
+  const [registerLoading, setRegisterLoading] = useState(false);
 
-    navigation.navigate('CompletedStudentRegistration');
+  const singUp = useCallback(
+    async (formFields: IFormProps) => {
+      try {
+        setRegisterLoading(true);
+
+        const { data } = await api.post<RegisterStudentResponse>('aluno', {
+          ...formFields,
+        });
+
+        if (data.response.success === 'true') {
+          setUser(data.response.data[0]);
+
+          return true;
+        }
+      } catch (error) {
+        Alert.alert(
+          'Erro no cadastro',
+          'Verifique os dados e tente novamente!',
+        );
+
+        return false;
+      } finally {
+        setRegisterLoading(false);
+      }
+    },
+    [setUser],
+  );
+
+  const onSubmit = async (data: IFormProps) => {
+    const isRegistered = await singUp(data);
+
+    if (isRegistered) {
+      navigation.navigate('CompletedStudentRegistration');
+    }
   };
 
   useEffect(() => {
-    register({ name: 'name' });
-    register({ name: 'user' });
+    register({ name: 'nome' });
+    register({ name: 'ra' });
     register({ name: 'email' });
-    register({ name: 'password' });
-    register({ name: 'passwordConfirmation' });
+    register({ name: 'telefone' });
+    register({ name: 'bio' });
+    register({ name: 'senha' });
+    register({ name: 'confirmPassword' });
   }, [register]);
 
   return (
@@ -73,11 +116,11 @@ const StudentSignUp: React.FC = () => {
             </S.HeaderWrapper>
 
             <View>
-              <S.Title>Crie a conta estudantil.</S.Title>
+              <S.Title>Crie sua conta</S.Title>
             </View>
 
             <Controller
-              name="name"
+              name="nome"
               defaultValue=""
               control={control}
               render={({ onChange, value }) => (
@@ -85,14 +128,14 @@ const StudentSignUp: React.FC = () => {
                   label="Nome"
                   value={value}
                   leftIconName="user"
-                  errors={errors.name?.message}
+                  errors={errors.nome?.message}
                   onChangeText={onChange}
                 />
               )}
             />
 
             <Controller
-              name="user"
+              name="ra"
               defaultValue=""
               control={control}
               render={({ onChange, value }) => (
@@ -105,7 +148,43 @@ const StudentSignUp: React.FC = () => {
                   returnKeyType="next"
                   keyboardType="numeric"
                   onChangeText={onChange}
-                  errors={errors.user?.message}
+                  errors={errors.ra?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="bio"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  label="Biografia"
+                  value={value}
+                  leftIconName="book"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  onChangeText={onChange}
+                  errors={errors.bio?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="telefone"
+              defaultValue=""
+              control={control}
+              render={({ onChange, value }) => (
+                <TextInput
+                  value={value}
+                  maxLength={11}
+                  label="Telefone"
+                  leftIconName="phone"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  mask="(99)99999-9999"
+                  onChangeText={onChange}
+                  errors={errors.telefone?.message}
                 />
               )}
             />
@@ -128,7 +207,7 @@ const StudentSignUp: React.FC = () => {
             />
 
             <Controller
-              name="password"
+              name="senha"
               defaultValue=""
               control={control}
               render={({ onChange, value }) => (
@@ -139,7 +218,7 @@ const StudentSignUp: React.FC = () => {
                   leftIconName="lock"
                   returnKeyType="next"
                   onChangeText={onChange}
-                  errors={errors.password?.message}
+                  errors={errors.senha?.message}
                   customShowPasswordComponent={
                     <Icon
                       size={20}
@@ -159,7 +238,7 @@ const StudentSignUp: React.FC = () => {
             />
 
             <Controller
-              name="passwordConfirmation"
+              name="confirmPassword"
               defaultValue=""
               control={control}
               render={({ onChange, value }) => (
@@ -170,7 +249,7 @@ const StudentSignUp: React.FC = () => {
                   leftIconName="lock"
                   returnKeyType="send"
                   onChangeText={onChange}
-                  errors={errors.passwordConfirmation?.message}
+                  errors={errors.confirmPassword?.message}
                   onSubmitEditing={handleSubmit(onSubmit)}
                   customShowPasswordComponent={
                     <Icon
@@ -192,8 +271,9 @@ const StudentSignUp: React.FC = () => {
           </S.TopContent>
 
           <DefaultButton
-            text="Cadastras"
-            style={{ alignSelf: 'center', marginBottom: 20 }}
+            text="Cadastrar"
+            loading={registerLoading}
+            style={{ alignSelf: 'center' }}
             onPress={handleSubmit(onSubmit)}
           />
         </S.Container>

@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
         setStudentVacanciesLoading(true);
 
         const { data } = await api.get<VacancyResponse>(
-          `vaga/candidatura?id_aluno=${20}`,
+          `vaga/candidatura?id_aluno=${id_aluno}`,
         );
 
         setStudentVacancies(data.response);
@@ -104,7 +104,12 @@ const Dashboard: React.FC = () => {
         <S.Button
           text="Candidatar-se"
           style={{ marginTop: 'auto' }}
-          onPress={() => console.log('Candidatar-se')}
+          onPress={() =>
+            Alert.alert(
+              'Registro em processamento',
+              'Assim que a candidatura for concluída a vaga estará disponível no campo minhas vagas!',
+            )
+          }
         />
       </S.CarouselContent>
     );
