@@ -20,7 +20,7 @@ interface IFormProps {
 }
 
 const schema = yup.object().shape({
-  ra: yup.number().required('R.A. obrigatório.'),
+  ra: yup.string().required('R.A. obrigatório.'),
   senha: yup
     .string()
     .required('Senha obrigatória.')
