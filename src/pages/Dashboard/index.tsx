@@ -1,5 +1,6 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useCallback, useState } from 'react';
+import { View, ActivityIndicator, Alert } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import Carousel from 'react-native-snap-carousel';
 import {
@@ -8,20 +9,37 @@ import {
 } from 'react-native-responsive-screen';
 
 import * as S from './styles';
+import colors from '~/themes/colors';
+import { api } from '~/services/api';
 import { Header } from './components';
-
-interface VacancyProps {
-  tipo: string;
-  titulo: string;
-  id_vaga: number;
-  salario: number;
-  descricao: string;
-  localizacao: string;
-  id_empresa_fk: number;
-}
+import { VacancyResponse, VacancyProps } from '~/interfaces/Vacancy';
 
 const Dashboard: React.FC = () => {
   const navigation = useNavigation();
+
+  const [vacancy, setVacancy] = useState<VacancyProps[]>([]);
+  const [vacancyLoading, setVacancyLoading] = useState(true);
+
+  const fetchVacancy = useCallback(async () => {
+    try {
+      setVacancyLoading(true);
+
+      const { data } = await api.get<VacancyResponse>('vaga');
+
+      setVacancy(data.response);
+    } catch (error) {
+      Alert.alert(
+        'Erro ao listar as vagas',
+        'Por favor, tente novamente mais tarde!',
+      );
+    } finally {
+      setVacancyLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchVacancy();
+  }, [fetchVacancy]);
 
   const response: VacancyProps[] = [
     {
@@ -152,13 +170,17 @@ const Dashboard: React.FC = () => {
     <S.Container>
       <Header />
 
-      <Carousel
-        ref={null}
-        data={response}
-        itemWidth={wh('40')}
-        renderItem={renderItems}
-        sliderWidth={ww('100%')}
-      />
+      {vacancyLoading ? (
+        <ActivityIndicator color={colors.primaryColor} />
+      ) : (
+        <Carousel
+          ref={null}
+          data={vacancy}
+          itemWidth={wh('40')}
+          renderItem={renderItems}
+          sliderWidth={ww('100%')}
+        />
+      )}
 
       <Carousel
         ref={null}
