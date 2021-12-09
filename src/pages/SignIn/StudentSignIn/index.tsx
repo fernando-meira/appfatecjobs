@@ -28,8 +28,8 @@ const schema = yup.object().shape({
 });
 
 const StudentSignIn: React.FC = () => {
-  const { loginLoading, signIn } = useAuth();
   const navigation = useNavigation();
+  const { loginLoading, signIn } = useAuth();
   const { handleSubmit, register, control, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -164,9 +164,9 @@ const StudentSignIn: React.FC = () => {
         )}
 
         <DefaultButton
-          onPress={handleSubmit(onSubmit)}
           text="Entrar"
           loading={loginLoading}
+          onPress={handleSubmit(onSubmit)}
         />
       </S.Container>
     </SafeAreaView>

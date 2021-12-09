@@ -19,8 +19,6 @@ const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<UserData>();
   const [loginLoading, setLoginLoading] = useState(false);
 
-  console.log('user', user);
-
   const signIn = useCallback(async (ra: string, senha: string) => {
     try {
       setLoginLoading(true);
@@ -48,8 +46,6 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@fatecJobs:token', '@fatecJobs:user']);
-
     setUser({} as UserData);
   }, []);
 
