@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import { Alert, SafeAreaView, Keyboard } from 'react-native';
+import { SafeAreaView, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
@@ -13,8 +13,6 @@ import Logo from '~/themes/assets/svg/small-logo.svg';
 import { DefaultButton, TextInput } from '~/components';
 
 import * as S from './styles';
-import { api } from '~/services/api';
-import { UserResponse } from '~/interfaces/User';
 
 interface IFormProps {
   ra: string;
