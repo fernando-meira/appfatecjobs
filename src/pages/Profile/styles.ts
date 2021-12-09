@@ -59,7 +59,11 @@ export const ContentRow = styled.View`
   flex-direction: row;
 `;
 
-export const RegularText = styled.Text`
+export const RegularText = styled.Text.attrs(() => ({
+  numberOfLines: 4,
+  ellipsizeMode: 'tail',
+}))`
+  max-width:90%
   font-size: ${ww(4)}px;
   font-family: 'Poppins-Regular';
 `;

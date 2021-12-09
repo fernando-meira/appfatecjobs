@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import { Alert, SafeAreaView, Keyboard } from 'react-native';
+import { SafeAreaView, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
@@ -13,8 +13,6 @@ import Logo from '~/themes/assets/svg/small-logo.svg';
 import { DefaultButton, TextInput } from '~/components';
 
 import * as S from './styles';
-import { api } from '~/services/api';
-import { UserResponse } from '~/interfaces/User';
 
 interface IFormProps {
   ra: string;
@@ -22,7 +20,7 @@ interface IFormProps {
 }
 
 const schema = yup.object().shape({
-  ra: yup.number().required('R.A. obrigatório.'),
+  ra: yup.string().required('R.A. obrigatório.'),
   senha: yup
     .string()
     .required('Senha obrigatória.')
@@ -30,8 +28,8 @@ const schema = yup.object().shape({
 });
 
 const StudentSignIn: React.FC = () => {
-  const { loginLoading, signIn } = useAuth();
   const navigation = useNavigation();
+  const { loginLoading, signIn } = useAuth();
   const { handleSubmit, register, control, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -166,9 +164,9 @@ const StudentSignIn: React.FC = () => {
         )}
 
         <DefaultButton
-          onPress={handleSubmit(onSubmit)}
           text="Entrar"
           loading={loginLoading}
+          onPress={handleSubmit(onSubmit)}
         />
       </S.Container>
     </SafeAreaView>

@@ -1,5 +1,6 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useCallback, useState, useMemo } from 'react';
+import { View, ActivityIndicator, Alert } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import Carousel from 'react-native-snap-carousel';
 import {
@@ -8,83 +9,68 @@ import {
 } from 'react-native-responsive-screen';
 
 import * as S from './styles';
+import { useAuth } from '~/hooks/auth';
+import colors from '~/themes/colors';
+import { api } from '~/services/api';
 import { Header } from './components';
-
-interface VacancyProps {
-  tipo: string;
-  titulo: string;
-  id_vaga: number;
-  salario: number;
-  descricao: string;
-  localizacao: string;
-  id_empresa_fk: number;
-}
+import { VacancyResponse, VacancyProps } from '~/interfaces/Vacancy';
 
 const Dashboard: React.FC = () => {
+  const { user } = useAuth();
   const navigation = useNavigation();
 
-  const response: VacancyProps[] = [
-    {
-      id_vaga: 21,
-      id_empresa_fk: 21,
-      titulo: 'Desenvolvedor NodeJS',
-      descricao:
-        'É necessário conhecimento em x p t y tecnologias mínimo 5 anos de experiência em desenvolvimento backend com java EE',
-      localizacao: 'Sorocaba-SP',
-      salario: 4500,
-      tipo: 'PJ',
-    },
-    {
-      id_vaga: 22,
-      id_empresa_fk: 22,
-      titulo: 'Desenvolvedor Front-end Junior',
-      descricao:
-        'É necessário conhecimento em x p t y tecnologias mínimo 5 anos de experiência em desenvolvimento backend com java EE',
-      localizacao: 'Sorocaba-SP',
-      salario: 4500,
-      tipo: 'PJ',
-    },
-    {
-      id_vaga: 23,
-      id_empresa_fk: 23,
-      titulo: 'Desenvolvedor NodeJS',
-      descricao:
-        'É necessário conhecimento em x p t y tecnologias mínimo 5 anos de experiência em desenvolvimento backend com java EE',
-      localizacao: 'Sorocaba-SP',
-      salario: 4500,
-      tipo: 'PJ',
-    },
-    {
-      id_vaga: 24,
-      id_empresa_fk: 24,
-      titulo: 'Desenvolvedor NodeJS',
-      descricao:
-        'É necessário conhecimento em x p t y tecnologias mínimo 5 anos de experiência em desenvolvimento backend com java EE',
-      localizacao: 'Sorocaba-SP',
-      salario: 4500,
-      tipo: 'PJ',
-    },
-    {
-      id_vaga: 25,
-      id_empresa_fk: 25,
-      titulo: 'Desenvolvedor NodeJS',
-      descricao:
-        'É necessário conhecimento em x p t y tecnologias mínimo 5 anos de experiência em desenvolvimento backend com java EE',
-      localizacao: 'Sorocaba-SP',
-      salario: 4500,
-      tipo: 'PJ',
-    },
-    {
-      id_vaga: 26,
-      id_empresa_fk: 26,
-      titulo: 'Desenvolvedor NodeJS',
-      descricao:
-        'É necessário conhecimento em x p t y tecnologias mínimo 5 anos de experiência em desenvolvimento backend com java EE',
-      localizacao: 'Sorocaba-SP',
-      salario: 4500,
-      tipo: 'PJ',
-    },
-  ];
+  const id_aluno = user?.id_aluno || undefined;
+
+  const [vacancy, setVacancy] = useState<VacancyProps[]>([]);
+  const [vacancyLoading, setVacancyLoading] = useState(true);
+  const [studentVacancies, setStudentVacancies] = useState<VacancyProps[]>([]);
+  const [studentVacanciesLoading, setStudentVacanciesLoading] = useState(true);
+
+  const fetchVacancy = useCallback(async () => {
+    try {
+      setVacancyLoading(true);
+
+      const { data } = await api.get<VacancyResponse>('vaga');
+
+      setVacancy(data.response);
+    } catch (error) {
+      Alert.alert(
+        'Erro ao listar as vagas',
+        'Por favor, tente novamente mais tarde!',
+      );
+    } finally {
+      setVacancyLoading(false);
+    }
+  }, []);
+
+  const fetchStudentVacancy = useCallback(async () => {
+    if (id_aluno) {
+      try {
+        setStudentVacanciesLoading(true);
+
+        const { data } = await api.get<VacancyResponse>(
+          `vaga/candidatura?id_aluno=${20}`,
+        );
+
+        setStudentVacancies(data.response);
+      } catch (error) {
+        Alert.alert(
+          'Erro ao suas vagas',
+          'Por favor, tente novamente mais tarde!',
+        );
+      } finally {
+        setStudentVacanciesLoading(false);
+      }
+    }
+  }, [id_aluno]);
+
+  useEffect(() => {
+    fetchVacancy();
+  }, [fetchVacancy]);
+
+  useEffect(() => {
+    fetchStudentVacancy();
+  }, [fetchStudentVacancy]);
 
   const renderItems = ({ item }: { item: VacancyProps }) => {
     return (
@@ -148,26 +134,52 @@ const Dashboard: React.FC = () => {
     );
   };
 
+  const renderFooter = useMemo(() => {
+    if (studentVacanciesLoading) {
+      return <View />;
+    }
+
+    if (studentVacancies.length <= 0) {
+      return (
+        <S.SmallCarouselWrapper>
+          <S.CarouselTitle>Você não tem nenhuma candidatura.</S.CarouselTitle>
+
+          <S.RegularText style={{ textAlign: 'center' }}>
+            Procure sua vaga ideal e candidate-se!
+          </S.RegularText>
+        </S.SmallCarouselWrapper>
+      );
+    }
+
+    return (
+      <Carousel
+        ref={null}
+        layout="tinder"
+        itemWidth={wh('40')}
+        data={studentVacancies}
+        sliderWidth={ww('100%')}
+        renderItem={renderSmallCarousel}
+      />
+    );
+  }, [studentVacancies, studentVacanciesLoading]);
+
   return (
     <S.Container>
       <Header />
 
-      <Carousel
-        ref={null}
-        data={response}
-        itemWidth={wh('40')}
-        renderItem={renderItems}
-        sliderWidth={ww('100%')}
-      />
+      {vacancyLoading ? (
+        <ActivityIndicator color={colors.primaryColor} />
+      ) : (
+        <Carousel
+          ref={null}
+          data={vacancy}
+          itemWidth={wh('40')}
+          renderItem={renderItems}
+          sliderWidth={ww('100%')}
+        />
+      )}
 
-      <Carousel
-        ref={null}
-        data={response}
-        layout="tinder"
-        itemWidth={wh('32')}
-        sliderWidth={ww('100%')}
-        renderItem={renderSmallCarousel}
-      />
+      {renderFooter}
 
       <S.Button
         text="Ver perfil"

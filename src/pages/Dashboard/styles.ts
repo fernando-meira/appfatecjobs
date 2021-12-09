@@ -9,8 +9,13 @@ import { DefaultButton } from '~/components';
 
 export const Container = styled.View`
   align-items: center;
-  padding: 0 ${wh(4)}px;
   margin-top: ${wh(3)}px;
+  padding: ${wh(2)}px ${wh(4)}px;
+
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 export const CarouselWrapper = styled.View`
