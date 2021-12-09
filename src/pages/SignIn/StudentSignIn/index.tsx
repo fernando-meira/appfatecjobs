@@ -3,33 +3,34 @@ import * as yup from 'yup';
 import Icon from 'react-native-vector-icons/Feather';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
-import {
-  NavigationHelpersContext,
-  useNavigation,
-} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Alert, SafeAreaView, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import colors from '~/themes/colors';
+import { useAuth } from '~/hooks/auth';
 import Logo from '~/themes/assets/svg/small-logo.svg';
 import { DefaultButton, TextInput } from '~/components';
 
 import * as S from './styles';
+import { api } from '~/services/api';
+import { UserResponse } from '~/interfaces/User';
 
 interface IFormProps {
-  user: string;
-  password: string;
+  ra: string;
+  senha: string;
 }
 
 const schema = yup.object().shape({
-  user: yup.number().required('R.A. obrigatório.'),
-  password: yup
+  ra: yup.number().required('R.A. obrigatório.'),
+  senha: yup
     .string()
     .required('Senha obrigatória.')
     .min(6, 'Mínimo seis caracteres.'),
 });
 
 const StudentSignIn: React.FC = () => {
+  const { loginLoading, signIn } = useAuth();
   const navigation = useNavigation();
   const { handleSubmit, register, control, errors } = useForm({
     resolver: yupResolver(schema),
@@ -37,15 +38,17 @@ const StudentSignIn: React.FC = () => {
 
   const [showKeyboard, setShowKeyboard] = useState(false);
 
-  const onSubmit = (data: IFormProps) => {
-    console.log('data', data);
+  const onSubmit = async (data: IFormProps) => {
+    const isAuthenticated = await signIn(data.ra, data.senha);
 
-    navigation.navigate('Dashboard');
+    if (isAuthenticated) {
+      return navigation.navigate('Dashboard');
+    }
   };
 
   useEffect(() => {
-    register({ name: 'user' });
-    register({ name: 'password' });
+    register({ name: 'ra' });
+    register({ name: 'senha' });
   }, [register]);
 
   const keyboardDidShow = () => {
@@ -90,7 +93,7 @@ const StudentSignIn: React.FC = () => {
             </S.TextTopWrapper>
 
             <Controller
-              name="user"
+              name="ra"
               defaultValue=""
               control={control}
               render={({ onChange, value }) => (
@@ -103,13 +106,13 @@ const StudentSignIn: React.FC = () => {
                   returnKeyType="next"
                   keyboardType="numeric"
                   onChangeText={onChange}
-                  errors={errors.user?.message}
+                  errors={errors.ra?.message}
                 />
               )}
             />
 
             <Controller
-              name="password"
+              name="senha"
               defaultValue=""
               control={control}
               render={({ onChange, value }) => (
@@ -120,7 +123,7 @@ const StudentSignIn: React.FC = () => {
                   leftIconName="lock"
                   returnKeyType="send"
                   onChangeText={onChange}
-                  errors={errors.password?.message}
+                  errors={errors.senha?.message}
                   onSubmitEditing={handleSubmit(onSubmit)}
                   customShowPasswordComponent={
                     <Icon
@@ -162,7 +165,11 @@ const StudentSignIn: React.FC = () => {
           </S.CreateAccount>
         )}
 
-        <DefaultButton onPress={handleSubmit(onSubmit)} text="Entrar" />
+        <DefaultButton
+          onPress={handleSubmit(onSubmit)}
+          text="Entrar"
+          loading={loginLoading}
+        />
       </S.Container>
     </SafeAreaView>
   );
